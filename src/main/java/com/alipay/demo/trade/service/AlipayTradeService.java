@@ -22,7 +22,7 @@ public interface AlipayTradeService {
 
     // 当面付2.0消费退款
     public AlipayF2FRefundResult tradeRefund(AlipayTradeRefundRequestBuilder builder);
-
+    
     // 当面付2.0预下单(生成二维码)
     public AlipayF2FPrecreateResult tradePrecreate(AlipayTradePrecreateRequestBuilder builder);
 }

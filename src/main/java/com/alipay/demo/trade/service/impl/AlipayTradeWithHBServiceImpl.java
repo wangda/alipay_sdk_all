@@ -4,12 +4,14 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePayRequest;
+import com.alipay.api.response.AlipayTradeCancelResponse;
 import com.alipay.api.response.AlipayTradePayResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.alipay.demo.trade.config.Configs;
 import com.alipay.demo.trade.config.Constants;
 import com.alipay.demo.trade.model.F2FPayAccount;
 import com.alipay.demo.trade.model.TradeStatus;
+import com.alipay.demo.trade.model.builder.AlipayTradeCancelRequestBuilder;
 import com.alipay.demo.trade.model.builder.AlipayTradePayRequestBuilder;
 import com.alipay.demo.trade.model.builder.AlipayTradeQueryRequestBuilder;
 import com.alipay.demo.trade.model.result.AlipayF2FPayResult;
@@ -65,6 +67,12 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
             }
             if (listener == null) {
                 listener = new HbListener();  // 默认监听器
+            }
+            
+            if (payAccount != null) {
+                appid = payAccount.getAppid();
+                privateKey = payAccount.getPrivateKey();
+                alipayPublicKey = payAccount.getAlipayPublicKey();
             }
             
             return new AlipayTradeWithHBServiceImpl(this);
@@ -144,14 +152,17 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
     }
 
     public AlipayTradeWithHBServiceImpl(ClientBuilder builder) {
-        if (StringUtils.isEmpty(builder.getGatewayUrl())) {
-            throw new NullPointerException("gatewayUrl should not be NULL!");
-        }
         if (StringUtils.isEmpty(builder.getAppid())) {
             throw new NullPointerException("appid should not be NULL!");
         }
         if (StringUtils.isEmpty(builder.getPrivateKey())) {
             throw new NullPointerException("privateKey should not be NULL!");
+        }
+        if (StringUtils.isEmpty(builder.getAlipayPublicKey())) {
+            throw new NullPointerException("alipayPublicKey should not be NULL!");
+        }
+        if (builder.getListener() == null) {
+            throw new NullPointerException("listener should not be NULL!");
         }
         if (StringUtils.isEmpty(builder.getFormat())) {
             throw new NullPointerException("format should not be NULL!");
@@ -159,11 +170,8 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
         if (StringUtils.isEmpty(builder.getCharset())) {
             throw new NullPointerException("charset should not be NULL!");
         }
-        if (StringUtils.isEmpty(builder.getAlipayPublicKey())) {
-            throw new NullPointerException("alipayPublicKey should not be NULL!");
-        }
-        if (builder.getListener() == null) {
-            throw new NullPointerException("listener should not be NULL!");
+        if (StringUtils.isEmpty(builder.getGatewayUrl())) {
+            throw new NullPointerException("gatewayUrl should not be NULL!");
         }
 
         listener = builder.getListener();
@@ -302,4 +310,42 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
 
         return result;
     }
+    
+    
+    public AlipayTradeCancelResponse tradeCancel(String outTradeNo) {
+        AlipayTradeCancelRequestBuilder builder = new AlipayTradeCancelRequestBuilder().setOutTradeNo(outTradeNo);
+        AlipayTradeCancelResponse cancelResponse = cancelPayResult(builder);
+        return cancelResponse;
+    }
+
+    private AlipayF2FPayResult checkQueryAndCancel(final String outTradeNo, AlipayF2FPayResult result,
+            AlipayTradeQueryResponse queryResponse, final long beforeCall) {
+        if (querySuccess(queryResponse)) {
+            result.setTradeStatus(TradeStatus.SUCCESS);
+            result.setResponse(toPayResponse(queryResponse));
+
+            executorService.submit(new Runnable() {
+                public void run() {
+                    AlipayTradeWithHBServiceImpl.this.listener.onPayTradeSuccess(outTradeNo, beforeCall);
+                }
+            });
+            return result;
+        }
+        executorService.submit(new Runnable() {
+            public void run() {
+                AlipayTradeWithHBServiceImpl.this.listener.onPayFailed(outTradeNo, beforeCall);
+            }
+        });
+        
+
+        AlipayTradeCancelRequestBuilder builder = new AlipayTradeCancelRequestBuilder().setOutTradeNo(outTradeNo);
+        AlipayTradeCancelResponse cancelResponse = cancelPayResult(builder);
+        if (tradeError(cancelResponse)) {
+            result.setTradeStatus(TradeStatus.UNKNOWN);
+        } else {
+            result.setTradeStatus(TradeStatus.FAILED);
+        }
+        return result;
+    }
+    
 }
