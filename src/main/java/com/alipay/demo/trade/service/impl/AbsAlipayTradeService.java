@@ -39,6 +39,10 @@ abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayT
             // 查询返回该订单交易支付成功
             result.setTradeStatus(TradeStatus.SUCCESS);
 
+        } else if (queryUserpaying(response)) {
+            // 查询返回正在支付中
+            result.setTradeStatus(TradeStatus.USERPAYING);
+            
         } else if (tradeError(response)) {
             // 查询发生异常，交易状态未知
             result.setTradeStatus(TradeStatus.UNKNOWN);
@@ -259,6 +263,11 @@ abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayT
                 ("TRADE_SUCCESS".equals(response.getTradeStatus()) ||
                         "TRADE_FINISHED".equals(response.getTradeStatus())
                 );
+    }
+    
+    // 查询返回“正在输入密码”
+    protected boolean queryUserpaying(AlipayTradeQueryResponse response) {
+        return response != null && Constants.PAYING.equals(response.getCode());
     }
 
     // 撤销返回“撤销成功”

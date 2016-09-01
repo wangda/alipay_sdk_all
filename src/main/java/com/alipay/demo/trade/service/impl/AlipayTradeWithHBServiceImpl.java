@@ -274,11 +274,14 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
             });
 
             // 返回用户处理中，则轮询查询交易是否成功，如果查询超时，则调用撤销
-            AlipayTradeQueryRequestBuilder queryBuiler = new AlipayTradeQueryRequestBuilder()
-                    .setAppAuthToken(appAuthToken)
-                    .setOutTradeNo(outTradeNo);
-            AlipayTradeQueryResponse loopQueryResponse = loopQueryResult(queryBuiler);
-            return checkQueryAndCancel(outTradeNo, appAuthToken, result, loopQueryResponse);
+            // 直接返回用户正在输入密码，不进行查询和撤销
+            result.setTradeStatus(TradeStatus.USERPAYING);
+            
+//            AlipayTradeQueryRequestBuilder queryBuiler = new AlipayTradeQueryRequestBuilder()
+//                    .setAppAuthToken(appAuthToken)
+//                    .setOutTradeNo(outTradeNo);
+//            AlipayTradeQueryResponse loopQueryResponse = loopQueryResult(queryBuiler);
+//            return checkQueryAndCancel(outTradeNo, appAuthToken, result, loopQueryResponse);
 
         } else if (tradeError(response)) {
             // 系统错误，同步交易耗时
