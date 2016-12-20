@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.ebpp.bill.get response.
  * 
  * @author auto create
- * @since 1.0, 2014-06-12 17:16:56
+ * @since 1.0, 2016-07-20 14:12:42
  */
 public class AlipayEbppBillGetResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 8647568295128519347L;
+	private static final long serialVersionUID = 8544166547297319126L;
 
 	/** 
 	 * 支付宝的业务订单号，具有唯一性。

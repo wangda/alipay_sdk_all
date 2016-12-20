@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.mobile.public.message.label.send response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-05 10:18:18
+ * @since 1.0, 2016-03-31 21:05:48
  */
 public class AlipayMobilePublicMessageLabelSendResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 3391649421756762478L;
+	private static final long serialVersionUID = 3826164284967831358L;
 
 	/** 
 	 * 结果码

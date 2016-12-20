@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobilePublicAccountAddResponse;
  * ALIPAY API: alipay.mobile.public.account.add request
  * 
  * @author auto create
- * @since 1.0, 2016-03-01 17:17:58
+ * @since 1.0, 2016-03-24 21:17:45
  */
 public class AlipayMobilePublicAccountAddRequest implements AlipayRequest<AlipayMobilePublicAccountAddResponse> {
 
@@ -92,6 +92,8 @@ public class AlipayMobilePublicAccountAddRequest implements AlipayRequest<Alipay
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -99,6 +101,14 @@ public class AlipayMobilePublicAccountAddRequest implements AlipayRequest<Alipay
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -161,4 +171,18 @@ public class AlipayMobilePublicAccountAddRequest implements AlipayRequest<Alipay
 	public Class<AlipayMobilePublicAccountAddResponse> getResponseClass() {
 		return AlipayMobilePublicAccountAddResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

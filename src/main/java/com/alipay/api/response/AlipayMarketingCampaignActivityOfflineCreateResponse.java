@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.marketing.campaign.activity.offline.create response.
  * 
  * @author auto create
- * @since 1.0, 2015-10-28 21:39:33
+ * @since 1.0, 2016-05-13 18:35:42
  */
 public class AlipayMarketingCampaignActivityOfflineCreateResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 8795119868622278354L;
+	private static final long serialVersionUID = 3899131192628877276L;
 
 	/** 
 	 * 创建成功的活动id

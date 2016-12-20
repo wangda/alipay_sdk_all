@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.saleleads.contractconfirm response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 19:30:25
+ * @since 1.0, 2016-05-16 16:13:12
  */
 public class AlipayOfflineSaleleadsContractconfirmResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 2592274316262394936L;
+	private static final long serialVersionUID = 6591182569129575187L;
 
 	/** 
 	 * 当面付审核状态

@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayCommerceCityfacilitatorVoucherCancelRespons
  * ALIPAY API: alipay.commerce.cityfacilitator.voucher.cancel request
  * 
  * @author auto create
- * @since 1.0, 2015-12-18 16:28:25
+ * @since 1.0, 2016-04-28 14:25:54
  */
 public class AlipayCommerceCityfacilitatorVoucherCancelRequest implements AlipayRequest<AlipayCommerceCityfacilitatorVoucherCancelResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayCommerceCityfacilitatorVoucherCancelRequest implements Alipay
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayCommerceCityfacilitatorVoucherCancelRequest implements Alipay
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayCommerceCityfacilitatorVoucherCancelRequest implements Alipay
 	public Class<AlipayCommerceCityfacilitatorVoucherCancelResponse> getResponseClass() {
 		return AlipayCommerceCityfacilitatorVoucherCancelResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

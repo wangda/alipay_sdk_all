@@ -10,21 +10,27 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 商品券模板（数据）
  *
  * @author auto create
- * @since 1.0, 2015-12-21 14:31:35
+ * @since 1.0, 2016-05-26 13:26:04
  */
 public class AlipayDataItemVoucherTemplete extends AlipayObject {
 
-	private static final long serialVersionUID = 6166288178994523111L;
+	private static final long serialVersionUID = 2729666915798493684L;
 
 	/**
-	 * 券使用规则描述
+	 * 延迟生效时间（手动领取条件下，可跟valid_period组合使用）
+	 */
+	@ApiField("delay_minute")
+	private Long delayMinute;
+
+	/**
+	 * 券使用规则描述，包括描述标题及描述内容列表
 	 */
 	@ApiListField("desc_details")
 	@ApiField("alipay_data_item_description")
 	private List<AlipayDataItemDescription> descDetails;
 
 	/**
-	 * 折扣率
+	 * 折扣率，填写0~1间的小数且不包括0和1，如八折则传入0.8
 	 */
 	@ApiField("discount_rate")
 	private String discountRate;
@@ -36,13 +42,13 @@ public class AlipayDataItemVoucherTemplete extends AlipayObject {
 	private AlipayDataItemGoodsList externalGoodsList;
 
 	/**
-	 * 使用规则说明
+	 * 使用时间规则，控制商品的生效时间
 	 */
 	@ApiField("limit_period_info_list")
 	private AlipayDataItemLimitPeriodInfo limitPeriodInfoList;
 
 	/**
-	 * 商品原金额
+	 * 商品原金额，只有单品代金券有，丽人行业需要填写此字段
 	 */
 	@ApiField("original_amount")
 	private String originalAmount;
@@ -54,25 +60,31 @@ public class AlipayDataItemVoucherTemplete extends AlipayObject {
 	private String originalRate;
 
 	/**
-	 * 减至金额，代表券可抵扣至多少
+	 * 单品代金券中的减至金额
 	 */
 	@ApiField("reduce_to_amount")
 	private String reduceToAmount;
 
 	/**
-	 * 起步金额
+	 * 折扣金额取整规则 AUTO_ROUNDING_YUAN：自动抹零到元 AUTO_ROUNDING_JIAO：自动抹零到角 ROUNDING_UP_YUAN：四舍五入到元 ROUNDING_UP_JIAO：四舍五入到角
+	 */
+	@ApiField("rounding_rule")
+	private String roundingRule;
+
+	/**
+	 * 起步数量，用于指定可享受优惠的起步单品购买数量
 	 */
 	@ApiField("threshold_amount")
 	private String thresholdAmount;
 
 	/**
-	 * 起步数量
+	 * 起步数量，用于指定可享受优惠的起步单品购买数量
 	 */
 	@ApiField("threshold_quantity")
 	private String thresholdQuantity;
 
 	/**
-	 * 有效期，单位：分钟
+	 * 领券之后多长时间内可以核销，单位：分钟，传入数值需大于1440（一天）
 	 */
 	@ApiField("valid_period")
 	private Long validPeriod;
@@ -86,16 +98,23 @@ DISCOUNT类型为优惠封顶金额
 	private String valueAmount;
 
 	/**
-	 * 券的描述信息
+	 * 券的描述信息，目前客户端将统一展示“折扣须知”
 	 */
 	@ApiField("voucher_desc")
 	private String voucherDesc;
 
 	/**
-	 * 券类型
+	 * 券类型：单品代金券为CASH类型，全场折扣券为DISCOUNT类型
 	 */
 	@ApiField("voucher_type")
 	private String voucherType;
+
+	public Long getDelayMinute() {
+		return this.delayMinute;
+	}
+	public void setDelayMinute(Long delayMinute) {
+		this.delayMinute = delayMinute;
+	}
 
 	public List<AlipayDataItemDescription> getDescDetails() {
 		return this.descDetails;
@@ -144,6 +163,13 @@ DISCOUNT类型为优惠封顶金额
 	}
 	public void setReduceToAmount(String reduceToAmount) {
 		this.reduceToAmount = reduceToAmount;
+	}
+
+	public String getRoundingRule() {
+		return this.roundingRule;
+	}
+	public void setRoundingRule(String roundingRule) {
+		this.roundingRule = roundingRule;
 	}
 
 	public String getThresholdAmount() {

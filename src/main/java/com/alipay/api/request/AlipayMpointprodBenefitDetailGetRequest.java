@@ -36,6 +36,8 @@ benefitStatus: 状态只支持(VALID:生效、WAIT:待生效、INVALID:失效), 
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -43,6 +45,14 @@ benefitStatus: 状态只支持(VALID:生效、WAIT:待生效、INVALID:失效), 
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -100,4 +110,18 @@ benefitStatus: 状态只支持(VALID:生效、WAIT:待生效、INVALID:失效), 
 	public Class<AlipayMpointprodBenefitDetailGetResponse> getResponseClass() {
 		return AlipayMpointprodBenefitDetailGetResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

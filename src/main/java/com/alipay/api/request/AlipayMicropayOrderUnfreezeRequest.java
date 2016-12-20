@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMicropayOrderUnfreezeResponse;
  * ALIPAY API: alipay.micropay.order.unfreeze request
  * 
  * @author auto create
- * @since 1.0, 2016-01-14 17:45:06
+ * @since 1.0, 2016-06-06 17:54:23
  */
 public class AlipayMicropayOrderUnfreezeRequest implements AlipayRequest<AlipayMicropayOrderUnfreezeResponse> {
 
@@ -44,6 +44,8 @@ public class AlipayMicropayOrderUnfreezeRequest implements AlipayRequest<AlipayM
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -51,6 +53,14 @@ public class AlipayMicropayOrderUnfreezeRequest implements AlipayRequest<AlipayM
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -109,4 +119,18 @@ public class AlipayMicropayOrderUnfreezeRequest implements AlipayRequest<AlipayM
 	public Class<AlipayMicropayOrderUnfreezeResponse> getResponseClass() {
 		return AlipayMicropayOrderUnfreezeResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

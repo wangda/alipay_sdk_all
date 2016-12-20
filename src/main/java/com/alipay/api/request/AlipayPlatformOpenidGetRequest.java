@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayPlatformOpenidGetResponse;
  * ALIPAY API: alipay.platform.openid.get request
  * 
  * @author auto create
- * @since 1.0, 2015-04-24 17:17:50
+ * @since 1.0, 2016-06-06 17:38:21
  */
 public class AlipayPlatformOpenidGetRequest implements AlipayRequest<AlipayPlatformOpenidGetResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayPlatformOpenidGetRequest implements AlipayRequest<AlipayPlatf
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayPlatformOpenidGetRequest implements AlipayRequest<AlipayPlatf
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayPlatformOpenidGetRequest implements AlipayRequest<AlipayPlatf
 	public Class<AlipayPlatformOpenidGetResponse> getResponseClass() {
 		return AlipayPlatformOpenidGetResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobileStdPublicExpressUserQueryResponse;
  * ALIPAY API: alipay.mobile.std.public.express.user.query request
  * 
  * @author auto create
- * @since 1.0, 2015-12-01 20:50:44
+ * @since 1.0, 2016-03-31 21:06:14
  */
 public class AlipayMobileStdPublicExpressUserQueryRequest implements AlipayRequest<AlipayMobileStdPublicExpressUserQueryResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayMobileStdPublicExpressUserQueryRequest implements AlipayReque
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayMobileStdPublicExpressUserQueryRequest implements AlipayReque
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayMobileStdPublicExpressUserQueryRequest implements AlipayReque
 	public Class<AlipayMobileStdPublicExpressUserQueryResponse> getResponseClass() {
 		return AlipayMobileStdPublicExpressUserQueryResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

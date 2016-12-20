@@ -364,6 +364,8 @@ m-分钟，h-小时，d-天，1c-当天（无论交易何时创建，都在0点�
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -371,6 +373,14 @@ m-分钟，h-小时，d-天，1c-当天（无论交易何时创建，都在0点�
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -453,4 +463,18 @@ m-分钟，h-小时，d-天，1c-当天（无论交易何时创建，都在0点�
 	public Class<AlipayAcquireCreateandpayResponse> getResponseClass() {
 		return AlipayAcquireCreateandpayResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

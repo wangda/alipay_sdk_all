@@ -15,6 +15,7 @@ import java.util.TimeZone;
 
 import com.alipay.api.internal.parser.json.ObjectJsonParser;
 import com.alipay.api.internal.parser.xml.ObjectXmlParser;
+import com.alipay.api.internal.util.AlipayEncrypt;
 import com.alipay.api.internal.util.AlipayHashMap;
 import com.alipay.api.internal.util.AlipayLogger;
 import com.alipay.api.internal.util.AlipaySignature;
@@ -36,6 +37,10 @@ public class DefaultAlipayClient implements AlipayClient {
     private String prodCode;
     private String format         = AlipayConstants.FORMAT_JSON;
     private String sign_type      = AlipayConstants.SIGN_TYPE_RSA;
+
+    private String encryptType    = AlipayConstants.ENCRYPT_TYPE_AES;
+
+    private String encryptKey;
 
     private String alipayPublicKey;
 
@@ -76,12 +81,36 @@ public class DefaultAlipayClient implements AlipayClient {
         this.alipayPublicKey = alipayPulicKey;
     }
 
+    public DefaultAlipayClient(String serverUrl, String appId, String privateKey, String format,
+                               String charset, String alipayPulicKey, String signType) {
+
+        this(serverUrl, appId, privateKey, format, charset, alipayPulicKey);
+
+        this.sign_type = signType;
+    }
+
+    public DefaultAlipayClient(String serverUrl, String appId, String privateKey, String format,
+                               String charset, String alipayPulicKey, String signType,
+                               String encryptKey, String encryptType) {
+
+        this(serverUrl, appId, privateKey, format, charset, alipayPulicKey, signType);
+
+        this.encryptType = encryptType;
+        this.encryptKey = encryptKey;
+    }
+
     public <T extends AlipayResponse> T execute(AlipayRequest<T> request) throws AlipayApiException {
         return execute(request, null);
     }
 
-    public <T extends AlipayResponse> T execute(AlipayRequest<T> request, String accessToken)
-                                                                                             throws AlipayApiException {
+    public <T extends AlipayResponse> T execute(AlipayRequest<T> request,
+                                                String accessToken) throws AlipayApiException {
+
+        return execute(request, accessToken, null);
+    }
+
+    public <T extends AlipayResponse> T execute(AlipayRequest<T> request, String accessToken,
+                                                String appAuthToken) throws AlipayApiException {
 
         AlipayParser<T> parser = null;
         if (AlipayConstants.FORMAT_XML.equals(this.format)) {
@@ -90,92 +119,79 @@ public class DefaultAlipayClient implements AlipayClient {
             parser = new ObjectJsonParser<T>(request.getResponseClass());
         }
 
-        return _execute(request, parser, accessToken);
+        return _execute(request, parser, accessToken, appAuthToken);
     }
 
-    private <T extends AlipayResponse> T _execute(AlipayRequest<T> request, AlipayParser<T> parser,
-                                                  String authToken) throws AlipayApiException {
-        Map<String, Object> rt = doPost(request, authToken);
-        if (rt == null) {
-            return null;
-        }
+    public <T extends AlipayResponse> T pageExecute(AlipayRequest<T> request) throws AlipayApiException {
+        return pageExecute(request, "POST");
+    }
 
-        T tRsp = null;
+    public <T extends AlipayResponse> T pageExecute(AlipayRequest<T> request,
+                                                    String httpMethod) throws AlipayApiException {
+        RequestParametersHolder requestHolder = getRequestHolderWithSign(request, null, null);
+        // 打印完整请求报文
+        if (AlipayLogger.isBizDebugEnabled()) {
+            AlipayLogger.logBizDebug(getRedirectUrl(requestHolder));
+        }
+        T rsp = null;
         try {
-            tRsp = parser.parse((String) rt.get("rsp"));
-            tRsp.setBody((String) rt.get("rsp"));
-
-            // 针对成功结果且有支付宝公钥的进行验签
-            if (!StringUtils.isEmpty(this.alipayPublicKey)) {
-
-                SignItem signItem = parser.getSignItem(request, tRsp);
-
-                if (signItem == null) {
-
-                    throw new AlipayApiException("sign check fail: Body is Empty!");
-                }
-
-                if (tRsp.isSuccess()
-                    || (!tRsp.isSuccess() && !StringUtils.isEmpty(signItem.getSign()))) {
-
-                    boolean rsaCheckContent = AlipaySignature.rsaCheckContent(
-                        signItem.getSignSourceDate(), signItem.getSign(), this.alipayPublicKey,
-                        this.charset);
-
-                    if (!rsaCheckContent) {
-
-                        // 针对JSON \/问题，替换/后再尝试做一次验证
-                        if (!StringUtils.isEmpty(signItem.getSignSourceDate())
-                            && signItem.getSignSourceDate().contains("\\/")) {
-
-                            String srouceData = signItem.getSignSourceDate().replace("\\/", "/");
-
-                            boolean jsonCheck = AlipaySignature.rsaCheckContent(srouceData,
-                                signItem.getSign(), this.alipayPublicKey, this.charset);
-
-                            if (!jsonCheck) {
-                                throw new AlipayApiException(
-                                    "sign check fail: check Sign and Data Fail！JSON also！");
-                            }
-                        } else {
-
-                            throw new AlipayApiException(
-                                "sign check fail: check Sign and Data Fail!");
-                        }
-                    }
-                }
-
-            }
-
-        } catch (RuntimeException e) {
-            AlipayLogger.logBizError((String) rt.get("rsp"));
-            throw e;
-        } catch (AlipayApiException e) {
-            AlipayLogger.logBizError((String) rt.get("rsp"));
-            throw new AlipayApiException(e);
+            Class<T> clazz = request.getResponseClass();
+            rsp = clazz.newInstance();
+        } catch (InstantiationException e) {
+            AlipayLogger.logBizError(e);
+        } catch (IllegalAccessException e) {
+            AlipayLogger.logBizError(e);
         }
-
-        tRsp.setParams((AlipayHashMap) rt.get("textParams"));
-        if (!tRsp.isSuccess()) {
-            AlipayLogger.logErrorScene(rt, tRsp, "");
+        if ("GET".equalsIgnoreCase(httpMethod)) {
+            rsp.setBody(getRedirectUrl(requestHolder));
+        } else {
+            String baseUrl = getRequestUrl(requestHolder);
+            rsp.setBody(WebUtils.buildForm(baseUrl, requestHolder.getApplicationParams()));
         }
-        return tRsp;
+        return rsp;
     }
 
     /**
-     * 
+     * 组装接口参数，处理加密、签名逻辑
      * 
      * @param request
      * @param accessToken
+     * @param appAuthToken
      * @return
      * @throws AlipayApiException
      */
-    public <T extends AlipayResponse> Map<String, Object> doPost(AlipayRequest<T> request,
-                                                                 String accessToken)
-                                                                                    throws AlipayApiException {
-        Map<String, Object> result = new HashMap<String, Object>();
+    private <T extends AlipayResponse> RequestParametersHolder getRequestHolderWithSign(AlipayRequest<?> request,
+                                                                                        String accessToken,
+                                                                                        String appAuthToken) throws AlipayApiException {
         RequestParametersHolder requestHolder = new RequestParametersHolder();
         AlipayHashMap appParams = new AlipayHashMap(request.getTextParams());
+
+        // 只有新接口和设置密钥才能支持加密
+        if (request.isNeedEncrypt()) {
+
+            if (StringUtils.isEmpty(appParams.get(AlipayConstants.BIZ_CONTENT_KEY))) {
+
+                throw new AlipayApiException("当前API不支持加密请求");
+            }
+
+            // 需要加密必须设置密钥和加密算法
+            if (!StringUtils.areNotEmpty(this.encryptKey, this.encryptType)) {
+
+                throw new AlipayApiException("API请求要求加密，则必须设置密钥和密钥类型：encryptKey=" + encryptKey
+                                             + ",encryptType=" + encryptType);
+            }
+
+            String encryptContent = AlipayEncrypt.encryptContent(
+                appParams.get(AlipayConstants.BIZ_CONTENT_KEY), this.encryptType, this.encryptKey,
+                this.charset);
+
+            appParams.put(AlipayConstants.BIZ_CONTENT_KEY, encryptContent);
+        }
+
+        if (!StringUtils.isEmpty(appAuthToken)) {
+            appParams.put(AlipayConstants.APP_AUTH_TOKEN, appAuthToken);
+        }
+
         requestHolder.setApplicationParams(appParams);
 
         if (StringUtils.isEmpty(charset)) {
@@ -190,7 +206,12 @@ public class DefaultAlipayClient implements AlipayClient {
         protocalMustParams.put(AlipayConstants.TERMINAL_TYPE, request.getTerminalType());
         protocalMustParams.put(AlipayConstants.TERMINAL_INFO, request.getTerminalInfo());
         protocalMustParams.put(AlipayConstants.NOTIFY_URL, request.getNotifyUrl());
+        protocalMustParams.put(AlipayConstants.RETURN_URL, request.getReturnUrl());
         protocalMustParams.put(AlipayConstants.CHARSET, charset);
+
+        if (request.isNeedEncrypt()) {
+            protocalMustParams.put(AlipayConstants.ENCRYPT_TYPE, this.encryptType);
+        }
 
         Long timestamp = System.currentTimeMillis();
         DateFormat df = new SimpleDateFormat(AlipayConstants.DATE_TIME_FORMAT);
@@ -205,17 +226,26 @@ public class DefaultAlipayClient implements AlipayClient {
         protocalOptParams.put(AlipayConstants.PROD_CODE, request.getProdCode());
         requestHolder.setProtocalOptParams(protocalOptParams);
 
-        if (AlipayConstants.SIGN_TYPE_RSA.equals(this.sign_type)) {
+        if (!StringUtils.isEmpty(this.sign_type)) {
 
             String signContent = AlipaySignature.getSignatureContent(requestHolder);
-
             protocalMustParams.put(AlipayConstants.SIGN,
-                AlipaySignature.rsaSign(signContent, privateKey, charset));
+                AlipaySignature.rsaSign(signContent, privateKey, charset, this.sign_type));
 
         } else {
             protocalMustParams.put(AlipayConstants.SIGN, "");
         }
+        return requestHolder;
+    }
 
+    /**
+     * 获取POST请求的base url
+     * 
+     * @param requestHolder
+     * @return
+     * @throws AlipayApiException
+     */
+    private String getRequestUrl(RequestParametersHolder requestHolder) throws AlipayApiException {
         StringBuffer urlSb = new StringBuffer(serverUrl);
         try {
             String sysMustQuery = WebUtils.buildQuery(requestHolder.getProtocalMustParams(),
@@ -232,25 +262,208 @@ public class DefaultAlipayClient implements AlipayClient {
             throw new AlipayApiException(e);
         }
 
+        return urlSb.toString();
+    }
+
+    /**
+     * GET模式下获取跳转链接
+     * 
+     * @param requestHolder
+     * @return
+     * @throws AlipayApiException
+     */
+    private String getRedirectUrl(RequestParametersHolder requestHolder) throws AlipayApiException {
+        StringBuffer urlSb = new StringBuffer(serverUrl);
+        try {
+            Map<String, String> sortedMap = AlipaySignature.getSortedMap(requestHolder);
+            String sortedQuery = WebUtils.buildQuery(sortedMap, charset);
+            String sign = requestHolder.getProtocalMustParams().get(AlipayConstants.SIGN);
+            urlSb.append("?");
+            urlSb.append(sortedQuery);
+            if (sign != null & sign.length() > 0) {
+                Map<String, String> signMap = new HashMap<String, String>();
+                signMap.put(AlipayConstants.SIGN, sign);
+                String signQuery = WebUtils.buildQuery(signMap, charset);
+                urlSb.append("&");
+                urlSb.append(signQuery);
+            }
+        } catch (IOException e) {
+            throw new AlipayApiException(e);
+        }
+
+        return urlSb.toString();
+    }
+
+    private <T extends AlipayResponse> T _execute(AlipayRequest<T> request, AlipayParser<T> parser,
+                                                  String authToken,
+                                                  String appAuthToken) throws AlipayApiException {
+
+        Map<String, Object> rt = doPost(request, authToken, appAuthToken);
+        if (rt == null) {
+            return null;
+        }
+
+        T tRsp = null;
+
+        try {
+
+            // 若需要解密则先解密
+            ResponseEncryptItem responseItem = encryptResponse(request, rt, parser);
+
+            // 解析实际串
+            tRsp = parser.parse(responseItem.getRealContent());
+            tRsp.setBody(responseItem.getRealContent());
+
+            // 验签是对请求返回原始串
+            checkResponseSign(request, parser, responseItem.getRespContent(), tRsp.isSuccess());
+
+        } catch (RuntimeException e) {
+
+            AlipayLogger.logBizError((String) rt.get("rsp"));
+            throw e;
+        } catch (AlipayApiException e) {
+
+            AlipayLogger.logBizError((String) rt.get("rsp"));
+            throw new AlipayApiException(e);
+        }
+
+        tRsp.setParams((AlipayHashMap) rt.get("textParams"));
+        if (!tRsp.isSuccess()) {
+            AlipayLogger.logErrorScene(rt, tRsp, "");
+        }
+        return tRsp;
+    }
+
+    /**
+     * 
+     * 
+     * @param request
+     * @param accessToken
+     * @param signType
+     * @return
+     * @throws AlipayApiException
+     */
+    private <T extends AlipayResponse> Map<String, Object> doPost(AlipayRequest<T> request,
+                                                                  String accessToken,
+                                                                  String appAuthToken) throws AlipayApiException {
+        Map<String, Object> result = new HashMap<String, Object>();
+        RequestParametersHolder requestHolder = getRequestHolderWithSign(request, accessToken,
+            appAuthToken);
+
+        String url = getRequestUrl(requestHolder);
+
+        // 打印完整请求报文
+        if (AlipayLogger.isBizDebugEnabled()) {
+            AlipayLogger.logBizDebug(getRedirectUrl(requestHolder));
+        }
+
         String rsp = null;
         try {
             if (request instanceof AlipayUploadRequest) {
                 AlipayUploadRequest<T> uRequest = (AlipayUploadRequest<T>) request;
                 Map<String, FileItem> fileParams = AlipayUtils.cleanupMap(uRequest.getFileParams());
-                rsp = WebUtils.doPost(urlSb.toString(), appParams, fileParams, charset,
-                    connectTimeout, readTimeout);
+                rsp = WebUtils.doPost(url, requestHolder.getApplicationParams(), fileParams,
+                    charset, connectTimeout, readTimeout);
             } else {
-                rsp = WebUtils.doPost(urlSb.toString(), appParams, charset, connectTimeout,
-                    readTimeout);
+                rsp = WebUtils.doPost(url, requestHolder.getApplicationParams(), charset,
+                    connectTimeout, readTimeout);
             }
         } catch (IOException e) {
             throw new AlipayApiException(e);
         }
         result.put("rsp", rsp);
-        result.put("textParams", appParams);
-        result.put("protocalMustParams", protocalMustParams);
-        result.put("protocalOptParams", protocalOptParams);
-        result.put("url", urlSb.toString());
+        result.put("textParams", requestHolder.getApplicationParams());
+        result.put("protocalMustParams", requestHolder.getProtocalMustParams());
+        result.put("protocalOptParams", requestHolder.getProtocalOptParams());
+        result.put("url", url);
         return result;
     }
+
+    /**
+     *  检查响应签名
+     * 
+     * @param request
+     * @param parser
+     * @param responseBody
+     * @param responseIsSucess
+     * @throws AlipayApiException
+     */
+    private <T extends AlipayResponse> void checkResponseSign(AlipayRequest<T> request,
+                                                              AlipayParser<T> parser,
+                                                              String responseBody,
+                                                              boolean responseIsSucess) throws AlipayApiException {
+        // 针对成功结果且有支付宝公钥的进行验签
+        if (!StringUtils.isEmpty(this.alipayPublicKey)) {
+
+            SignItem signItem = parser.getSignItem(request, responseBody);
+
+            if (signItem == null) {
+
+                throw new AlipayApiException("sign check fail: Body is Empty!");
+            }
+
+            if (responseIsSucess
+                || (!responseIsSucess && !StringUtils.isEmpty(signItem.getSign()))) {
+
+                boolean rsaCheckContent = AlipaySignature.rsaCheck(signItem.getSignSourceDate(),
+                    signItem.getSign(), this.alipayPublicKey, this.charset, this.sign_type);
+
+                if (!rsaCheckContent) {
+
+                    // 针对JSON \/问题，替换/后再尝试做一次验证
+                    if (!StringUtils.isEmpty(signItem.getSignSourceDate())
+                        && signItem.getSignSourceDate().contains("\\/")) {
+
+                        String srouceData = signItem.getSignSourceDate().replace("\\/", "/");
+
+                        boolean jsonCheck = AlipaySignature.rsaCheck(srouceData, signItem.getSign(),
+                            this.alipayPublicKey, this.charset, this.sign_type);
+
+                        if (!jsonCheck) {
+                            throw new AlipayApiException(
+                                "sign check fail: check Sign and Data Fail！JSON also！");
+                        }
+                    } else {
+
+                        throw new AlipayApiException("sign check fail: check Sign and Data Fail!");
+                    }
+                }
+            }
+
+        }
+    }
+
+    /**
+     *  解密响应
+     * 
+     * @param request
+     * @param rt
+     * @param parser
+     * @return
+     * @throws AlipayApiException
+     */
+    private <T extends AlipayResponse> ResponseEncryptItem encryptResponse(AlipayRequest<T> request,
+                                                                           Map<String, Object> rt,
+                                                                           AlipayParser<T> parser) throws AlipayApiException {
+
+        String responseBody = (String) rt.get("rsp");
+
+        String realBody = null;
+
+        // 解密
+        if (request.isNeedEncrypt()) {
+
+            // 解密原始串
+            realBody = parser.encryptSourceData(request, responseBody, this.format,
+                this.encryptType, this.encryptKey, this.charset);
+        } else {
+
+            // 解析原内容串
+            realBody = (String) rt.get("rsp");
+        }
+
+        return new ResponseEncryptItem(responseBody, realBody);
+
+    }
+
 }

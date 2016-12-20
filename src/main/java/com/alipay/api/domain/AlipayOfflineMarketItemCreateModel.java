@@ -11,11 +11,11 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 系统商需要通过该接口在口碑平台帮助商户创建商品。
  *
  * @author auto create
- * @since 1.0, 2016-02-29 15:31:12
+ * @since 1.0, 2016-04-11 19:36:54
  */
 public class AlipayOfflineMarketItemCreateModel extends AlipayObject {
 
-	private static final long serialVersionUID = 2285741385112432934L;
+	private static final long serialVersionUID = 1825448274394486344L;
 
 	/**
 	 * 商品审核上下文。支付宝内部使用，外部商户不需填写此字段

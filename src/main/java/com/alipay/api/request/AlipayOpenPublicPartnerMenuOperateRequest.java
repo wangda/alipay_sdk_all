@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayOpenPublicPartnerMenuOperateResponse;
  * ALIPAY API: alipay.open.public.partner.menu.operate request
  * 
  * @author auto create
- * @since 1.0, 2016-01-07 12:55:05
+ * @since 1.0, 2016-03-31 21:03:04
  */
 public class AlipayOpenPublicPartnerMenuOperateRequest implements AlipayRequest<AlipayOpenPublicPartnerMenuOperateResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayOpenPublicPartnerMenuOperateRequest implements AlipayRequest<
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayOpenPublicPartnerMenuOperateRequest implements AlipayRequest<
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayOpenPublicPartnerMenuOperateRequest implements AlipayRequest<
 	public Class<AlipayOpenPublicPartnerMenuOperateResponse> getResponseClass() {
 		return AlipayOpenPublicPartnerMenuOperateResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

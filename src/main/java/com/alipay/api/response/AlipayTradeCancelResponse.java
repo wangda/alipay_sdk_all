@@ -8,14 +8,16 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.trade.cancel response.
  * 
  * @author auto create
- * @since 1.0, 2015-12-04 21:46:00
+ * @since 1.0, 2016-05-30 10:18:16
  */
 public class AlipayTradeCancelResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 5718355246677671245L;
+	private static final long serialVersionUID = 6898299983485423715L;
 
 	/** 
 	 * 本次撤销触发的交易动作
+close：关闭交易，无退款
+refund：产生了退款
 	 */
 	@ApiField("action")
 	private String action;

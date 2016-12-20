@@ -12,11 +12,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.trade.pay response.
  * 
  * @author auto create
- * @since 1.0, 2015-12-04 21:45:56
+ * @since 1.0, 2016-07-05 18:27:19
  */
 public class AlipayTradePayResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 8689391567652825129L;
+	private static final long serialVersionUID = 8115726964292244792L;
 
 	/** 
 	 * 买家支付宝账号
@@ -49,7 +49,7 @@ public class AlipayTradePayResponse extends AlipayResponse {
 	private String discountGoodsDetail;
 
 	/** 
-	 * 交易支付使用的资金单据列表
+	 * 交易支付使用的资金渠道
 	 */
 	@ApiListField("fund_bill_list")
 	@ApiField("trade_fund_bill")
@@ -68,7 +68,7 @@ public class AlipayTradePayResponse extends AlipayResponse {
 	private String invoiceAmount;
 
 	/** 
-	 * 买家支付宝用户号
+	 * 买家支付宝用户号,该参数已废弃，请不要使用。
 	 */
 	@ApiField("open_id")
 	private String openId;
@@ -86,7 +86,7 @@ public class AlipayTradePayResponse extends AlipayResponse {
 	private String pointAmount;
 
 	/** 
-	 * 88.88
+	 * 实收金额
 	 */
 	@ApiField("receipt_amount")
 	private String receiptAmount;

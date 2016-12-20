@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.marketing.cdp.recommend.query response.
  * 
  * @author auto create
- * @since 1.0, 2015-12-01 13:49:03
+ * @since 1.0, 2016-07-12 19:37:01
  */
 public class AlipayMarketingCdpRecommendQueryResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 6265199572369528694L;
+	private static final long serialVersionUID = 6433771815383422999L;
 
 	/** 
 	 * 当前推荐的唯一标识,用于不同方案的效果跟踪

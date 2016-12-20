@@ -10,11 +10,11 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 开放活动接口奖品
  *
  * @author auto create
- * @since 1.0, 2016-01-13 10:09:24
+ * @since 1.0, 2016-05-06 17:21:07
  */
 public class OpenPromoPrize extends AlipayObject {
 
-	private static final long serialVersionUID = 2492649267964815397L;
+	private static final long serialVersionUID = 7793349263196493146L;
 
 	/**
 	 * 消费门槛设置，单位元
@@ -23,10 +23,23 @@ public class OpenPromoPrize extends AlipayObject {
 	private String prizeBaseRuleAmount;
 
 	/**
+	 * 商户增加的自定义菜单内容，包括菜单名称，详情页标题。JSON串形式上传
+	 */
+	@ApiListField("prize_custom_menu")
+	@ApiField("prize_custom_menu")
+	private List<PrizeCustomMenu> prizeCustomMenu;
+
+	/**
 	 * 奖品详情说明，默认和活动详情相同
 	 */
 	@ApiField("prize_desc")
 	private String prizeDesc;
+
+	/**
+	 * ISV提供素材中心的图片ID
+	 */
+	@ApiField("prize_detail_img")
+	private String prizeDetailImg;
 
 	/**
 	 * 周期性使用时段规则
@@ -40,6 +53,12 @@ public class OpenPromoPrize extends AlipayObject {
 	 */
 	@ApiField("prize_end_time")
 	private String prizeEndTime;
+
+	/**
+	 * ISV提供素材中心的图片ID，建议尺寸120*120，默认为空
+	 */
+	@ApiField("prize_logo")
+	private String prizeLogo;
 
 	/**
 	 * 奖品名称，默认和活动名称相同
@@ -58,6 +77,12 @@ public class OpenPromoPrize extends AlipayObject {
 	 */
 	@ApiField("prize_start_time")
 	private String prizeStartTime;
+
+	/**
+	 * 券副标题
+	 */
+	@ApiField("prize_subtitle")
+	private String prizeSubtitle;
 
 	/**
 	 * 店铺数据，支持多条
@@ -79,6 +104,13 @@ public class OpenPromoPrize extends AlipayObject {
 	private String prizeTemplateStartTime;
 
 	/**
+	 * 商家自定义使用须知内容，按条传入。JSON串形式上传，最多6条，每条最多100字
+	 */
+	@ApiListField("prize_terms")
+	@ApiField("string")
+	private List<String> prizeTerms;
+
+	/**
 	 * 奖品类型，现在支持VOUCHER_TICKET：表示代金券
 	 */
 	@ApiField("prize_type")
@@ -97,11 +129,25 @@ public class OpenPromoPrize extends AlipayObject {
 		this.prizeBaseRuleAmount = prizeBaseRuleAmount;
 	}
 
+	public List<PrizeCustomMenu> getPrizeCustomMenu() {
+		return this.prizeCustomMenu;
+	}
+	public void setPrizeCustomMenu(List<PrizeCustomMenu> prizeCustomMenu) {
+		this.prizeCustomMenu = prizeCustomMenu;
+	}
+
 	public String getPrizeDesc() {
 		return this.prizeDesc;
 	}
 	public void setPrizeDesc(String prizeDesc) {
 		this.prizeDesc = prizeDesc;
+	}
+
+	public String getPrizeDetailImg() {
+		return this.prizeDetailImg;
+	}
+	public void setPrizeDetailImg(String prizeDetailImg) {
+		this.prizeDetailImg = prizeDetailImg;
 	}
 
 	public List<OpenPromoPrizeDimension> getPrizeDimensionTime() {
@@ -116,6 +162,13 @@ public class OpenPromoPrize extends AlipayObject {
 	}
 	public void setPrizeEndTime(String prizeEndTime) {
 		this.prizeEndTime = prizeEndTime;
+	}
+
+	public String getPrizeLogo() {
+		return this.prizeLogo;
+	}
+	public void setPrizeLogo(String prizeLogo) {
+		this.prizeLogo = prizeLogo;
 	}
 
 	public String getPrizeName() {
@@ -139,6 +192,13 @@ public class OpenPromoPrize extends AlipayObject {
 		this.prizeStartTime = prizeStartTime;
 	}
 
+	public String getPrizeSubtitle() {
+		return this.prizeSubtitle;
+	}
+	public void setPrizeSubtitle(String prizeSubtitle) {
+		this.prizeSubtitle = prizeSubtitle;
+	}
+
 	public List<String> getPrizeSuitableShops() {
 		return this.prizeSuitableShops;
 	}
@@ -158,6 +218,13 @@ public class OpenPromoPrize extends AlipayObject {
 	}
 	public void setPrizeTemplateStartTime(String prizeTemplateStartTime) {
 		this.prizeTemplateStartTime = prizeTemplateStartTime;
+	}
+
+	public List<String> getPrizeTerms() {
+		return this.prizeTerms;
+	}
+	public void setPrizeTerms(List<String> prizeTerms) {
+		this.prizeTerms = prizeTerms;
 	}
 
 	public String getPrizeType() {

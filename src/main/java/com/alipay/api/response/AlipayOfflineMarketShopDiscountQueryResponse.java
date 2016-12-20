@@ -11,11 +11,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.market.shop.discount.query response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-14 23:38:41
+ * @since 1.0, 2016-03-04 11:35:58
  */
 public class AlipayOfflineMarketShopDiscountQueryResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 6573437719237436956L;
+	private static final long serialVersionUID = 2495472145923447774L;
 
 	/** 
 	 * 优惠信息列表，最大20条，按生效时间排序

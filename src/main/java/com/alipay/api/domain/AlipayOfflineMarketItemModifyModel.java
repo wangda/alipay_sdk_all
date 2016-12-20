@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 商户可以通过此接口对商品进行库存等信息的修改（库存修改值只能大于当前值）
  *
  * @author auto create
- * @since 1.0, 2016-02-29 15:31:06
+ * @since 1.0, 2016-06-27 17:15:10
  */
 public class AlipayOfflineMarketItemModifyModel extends AlipayObject {
 
-	private static final long serialVersionUID = 5517277947611589591L;
+	private static final long serialVersionUID = 6358115738847282537L;
 
 	/**
 	 * 审核规则。支付宝内部使用，外部商户不需填写此字段。
@@ -20,7 +20,7 @@ public class AlipayOfflineMarketItemModifyModel extends AlipayObject {
 	private AlipayItemAuditRule auditRule;
 
 	/**
-	 * 商品失效时间，只能延长，不能缩短
+	 * 支付宝内部使用，暂时不支持ISV修改。商品失效时间，只能延长，不能缩短
 	 */
 	@ApiField("gmt_end")
 	private String gmtEnd;
@@ -62,7 +62,7 @@ public class AlipayOfflineMarketItemModifyModel extends AlipayObject {
 	private String requestId;
 
 	/**
-	 * 销售规则
+	 * 支付宝内部参数，ISV不支持修改。销售规则
 	 */
 	@ApiField("sales_rule")
 	private AlipayItemSalesRule salesRule;

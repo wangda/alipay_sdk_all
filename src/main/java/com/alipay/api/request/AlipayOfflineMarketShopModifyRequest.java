@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayOfflineMarketShopModifyResponse;
  * ALIPAY API: alipay.offline.market.shop.modify request
  * 
  * @author auto create
- * @since 1.0, 2016-03-01 23:39:07
+ * @since 1.0, 2016-07-29 18:44:41
  */
 public class AlipayOfflineMarketShopModifyRequest implements AlipayRequest<AlipayOfflineMarketShopModifyResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayOfflineMarketShopModifyRequest implements AlipayRequest<Alipa
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayOfflineMarketShopModifyRequest implements AlipayRequest<Alipa
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayOfflineMarketShopModifyRequest implements AlipayRequest<Alipa
 	public Class<AlipayOfflineMarketShopModifyResponse> getResponseClass() {
 		return AlipayOfflineMarketShopModifyResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

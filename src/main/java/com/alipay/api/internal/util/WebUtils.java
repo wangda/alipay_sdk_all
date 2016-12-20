@@ -53,12 +53,12 @@ public abstract class WebUtils {
             return null;
         }
 
-        public void checkClientTrusted(X509Certificate[] chain, String authType)
-                                                                                throws CertificateException {
+        public void checkClientTrusted(X509Certificate[] chain,
+                                       String authType) throws CertificateException {
         }
 
-        public void checkServerTrusted(X509Certificate[] chain, String authType)
-                                                                                throws CertificateException {
+        public void checkServerTrusted(X509Certificate[] chain,
+                                       String authType) throws CertificateException {
         }
     }
 
@@ -267,8 +267,8 @@ public abstract class WebUtils {
         return rsp;
     }
 
-    private static byte[] getTextEntry(String fieldName, String fieldValue, String charset)
-                                                                                           throws IOException {
+    private static byte[] getTextEntry(String fieldName, String fieldValue,
+                                       String charset) throws IOException {
         StringBuilder entry = new StringBuilder();
         entry.append("Content-Disposition:form-data;name=\"");
         entry.append(fieldName);
@@ -311,8 +311,8 @@ public abstract class WebUtils {
      * @return 响应字符串
      * @throws IOException
      */
-    public static String doGet(String url, Map<String, String> params, String charset)
-                                                                                      throws IOException {
+    public static String doGet(String url, Map<String, String> params,
+                               String charset) throws IOException {
         HttpURLConnection conn = null;
         String rsp = null;
 
@@ -344,8 +344,8 @@ public abstract class WebUtils {
         return rsp;
     }
 
-    private static HttpURLConnection getConnection(URL url, String method, String ctype)
-                                                                                        throws IOException {
+    private static HttpURLConnection getConnection(URL url, String method,
+                                                   String ctype) throws IOException {
         HttpURLConnection conn = null;
         if ("https".equals(url.getProtocol())) {
             HttpsURLConnection connHttps = (HttpsURLConnection) url.openConnection();
@@ -560,6 +560,54 @@ public abstract class WebUtils {
         }
 
         return result;
+    }
+
+    public String buildForm(String baseUrl, RequestParametersHolder requestHolder) {
+        return null;
+    }
+
+    public static String buildForm(String baseUrl, Map<String, String> parameters) {
+        java.lang.StringBuffer sb = new StringBuffer();
+        sb.append("<form name=\"punchout_form\" method=\"post\" action=\"");
+        sb.append(baseUrl);
+        sb.append("\">\n");
+        sb.append(buildHiddenFields(parameters));
+
+        sb.append("<input type=\"submit\" value=\"立即支付\" style=\"display:none\" >\n");
+        sb.append("</form>\n");
+        sb.append("<script>document.forms[0].submit();</script>");
+        java.lang.String form = sb.toString();
+        return form;
+    }
+
+    private static String buildHiddenFields(Map<String, String> parameters) {
+        if (parameters == null || parameters.isEmpty()) {
+            return "";
+        }
+        java.lang.StringBuffer sb = new StringBuffer();
+        Set<String> keys = parameters.keySet();
+        for (String key : keys) {
+            String value = parameters.get(key);
+            // 除去参数中的空值
+            if (key == null || value == null) {
+                continue;
+            }
+            sb.append(buildHiddenField(key, value));
+        }
+        java.lang.String result = sb.toString();
+        return result;
+    }
+
+    private static String buildHiddenField(String key, String value) {
+        java.lang.StringBuffer sb = new StringBuffer();
+        sb.append("<input type=\"hidden\" name=\"");
+        sb.append(key);
+
+        sb.append("\" value=\"");
+        //转义双引号
+        String a = value.replace("\"", "&quot;");
+        sb.append(a).append("\">\n");
+        return sb.toString();
     }
 
 }

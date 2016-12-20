@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayUserAccountUseridBatchqueryResponse;
  * ALIPAY API: alipay.user.account.userid.batchquery request
  * 
  * @author auto create
- * @since 1.0, 2016-03-01 17:17:12
+ * @since 1.0, 2016-06-06 21:37:53
  */
 public class AlipayUserAccountUseridBatchqueryRequest implements AlipayRequest<AlipayUserAccountUseridBatchqueryResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayUserAccountUseridBatchqueryRequest implements AlipayRequest<A
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayUserAccountUseridBatchqueryRequest implements AlipayRequest<A
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayUserAccountUseridBatchqueryRequest implements AlipayRequest<A
 	public Class<AlipayUserAccountUseridBatchqueryResponse> getResponseClass() {
 		return AlipayUserAccountUseridBatchqueryResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

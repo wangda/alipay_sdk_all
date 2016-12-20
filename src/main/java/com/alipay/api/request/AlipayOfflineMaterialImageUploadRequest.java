@@ -12,7 +12,7 @@ import com.alipay.api.response.AlipayOfflineMaterialImageUploadResponse;
  * ALIPAY API: alipay.offline.material.image.upload request
  * 
  * @author auto create
- * @since 1.0, 2016-03-01 17:41:20
+ * @since 1.0, 2016-03-09 19:13:02
  */
 public class AlipayOfflineMaterialImageUploadRequest implements AlipayUploadRequest<AlipayOfflineMaterialImageUploadResponse> {
 
@@ -30,7 +30,7 @@ public class AlipayOfflineMaterialImageUploadRequest implements AlipayUploadRequ
 	private String imageName;
 
 	/** 
-	* 用于显示指定图片所属的partnerId，只适用于特殊调用者，普通用户请勿使用此参数
+	* 用于显示指定图片所属的partnerId（支付宝内部使用，外部商户无需填写此字段）
 	 */
 	private String imagePid;
 
@@ -70,6 +70,8 @@ public class AlipayOfflineMaterialImageUploadRequest implements AlipayUploadRequ
 	private String terminalInfo;
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+    private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -77,6 +79,14 @@ public class AlipayOfflineMaterialImageUploadRequest implements AlipayUploadRequ
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -141,4 +151,17 @@ public class AlipayOfflineMaterialImageUploadRequest implements AlipayUploadRequ
 	public Class<AlipayOfflineMaterialImageUploadResponse> getResponseClass() {
 		return AlipayOfflineMaterialImageUploadResponse.class;
 	}
+	
+	 public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

@@ -13,10 +13,12 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayConstants;
 import com.alipay.api.AlipayRequest;
 import com.alipay.api.AlipayResponse;
+import com.alipay.api.ResponseParseItem;
 import com.alipay.api.SignItem;
 import com.alipay.api.internal.mapping.Converter;
 import com.alipay.api.internal.mapping.Converters;
 import com.alipay.api.internal.mapping.Reader;
+import com.alipay.api.internal.util.AlipayEncrypt;
 import com.alipay.api.internal.util.StringUtils;
 import com.alipay.api.internal.util.XmlUtils;
 
@@ -98,15 +100,13 @@ public class XmlConverter implements Converter {
     }
 
     /** 
-     * @see com.alipay.api.internal.mapping.Converter#getSignItem(com.alipay.api.AlipayRequest, com.alipay.api.AlipayResponse)
+     * @see com.alipay.api.internal.mapping.Converter#getSignItem(com.alipay.api.AlipayRequest, String)
      */
-    public SignItem getSignItem(AlipayRequest<?> request, AlipayResponse response)
-                                                                                  throws AlipayApiException {
-
-        String body = response.getBody();
+    public SignItem getSignItem(AlipayRequest<?> request, String responseBody)
+                                                                              throws AlipayApiException {
 
         // 响应为空则直接返回
-        if (StringUtils.isEmpty(body)) {
+        if (StringUtils.isEmpty(responseBody)) {
 
             return null;
         }
@@ -114,11 +114,11 @@ public class XmlConverter implements Converter {
         SignItem signItem = new SignItem();
 
         // 获取签名
-        String sign = getSign(body);
+        String sign = getSign(responseBody);
         signItem.setSign(sign);
 
         // 签名源串
-        String signSourceData = getSignSourceData(request, body);
+        String signSourceData = getSignSourceData(request, responseBody);
         signItem.setSignSourceDate(signSourceData);
 
         return signItem;
@@ -199,4 +199,84 @@ public class XmlConverter implements Converter {
 
         return body.substring(signDataStartIndex, signDataEndIndex);
     }
+
+    /** 
+     * @see com.alipay.api.internal.mapping.Converter#encryptSourceData(com.alipay.api.AlipayRequest, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+     */
+    public String encryptSourceData(AlipayRequest<?> request, String body, String format,
+                                    String encryptType, String encryptKey, String charset)
+                                                                                          throws AlipayApiException {
+
+        ResponseParseItem respSignSourceData = getXMLSignSourceData(request, body);
+
+        String bodyIndexContent = body.substring(0, respSignSourceData.getStartIndex());
+        String bodyEndContent = body.substring(respSignSourceData.getEndIndex());
+
+        return bodyIndexContent
+               + AlipayEncrypt.decryptContent(respSignSourceData.getEncryptContent(), encryptType,
+                   encryptKey, charset) + bodyEndContent;
+    }
+
+    /**
+     * 
+     * @param request
+     * @param body
+     * @return
+     */
+    private ResponseParseItem getXMLSignSourceData(AlipayRequest<?> request, String body) {
+
+        // XML涓�������������
+        String rootNode = request.getApiMethodName().replace('.', '_')
+                          + AlipayConstants.RESPONSE_SUFFIX;
+        String errorRootNode = AlipayConstants.ERROR_RESPONSE;
+
+        int indexOfRootNode = body.indexOf(rootNode);
+        int indexOfErrorRoot = body.indexOf(errorRootNode);
+
+        if (indexOfRootNode > 0) {
+
+            return parseXMLSignSourceData(body, rootNode, indexOfRootNode);
+
+        } else if (indexOfErrorRoot > 0) {
+
+            return parseXMLSignSourceData(body, errorRootNode, indexOfErrorRoot);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     *   绛惧��婧�涓�
+     *   
+     * @param body
+     * @param rootNode
+     * @param indexOfRootNode
+     * @return
+     */
+    private ResponseParseItem parseXMLSignSourceData(String body, String rootNode,
+                                                     int indexOfRootNode) {
+
+        int signDataStartIndex = indexOfRootNode + rootNode.length() + 1;
+
+        String xmlStartNode = "<" + AlipayConstants.RESPONSE_XML_ENCRYPT_NODE_NAME + ">";
+        String xmlEndNode = "</" + AlipayConstants.RESPONSE_XML_ENCRYPT_NODE_NAME + ">";
+
+        int indexOfSign = body.indexOf(xmlEndNode);
+
+        if (indexOfSign < 0) {
+
+            return new ResponseParseItem(0, 0, "");
+        }
+
+        int signDataEndIndex = indexOfSign + xmlEndNode.length();
+
+        // 包含xml节点的
+        String encryptBizContent = body.substring(signDataStartIndex, signDataEndIndex);
+
+        String bizContent = encryptBizContent.substring(xmlStartNode.length(),
+            encryptBizContent.length() - xmlEndNode.length());
+
+        return new ResponseParseItem(signDataStartIndex, signDataEndIndex, bizContent);
+    }
+
 }

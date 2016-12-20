@@ -10,7 +10,7 @@ import com.alipay.api.response.MonitorHeartbeatSynResponse;
  * ALIPAY API: monitor.heartbeat.syn request
  * 
  * @author auto create
- * @since 1.0, 2015-07-16 17:40:53
+ * @since 1.0, 2016-06-06 22:21:41
  */
 public class MonitorHeartbeatSynRequest implements AlipayRequest<MonitorHeartbeatSynResponse> {
 
@@ -32,6 +32,8 @@ public class MonitorHeartbeatSynRequest implements AlipayRequest<MonitorHeartbea
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class MonitorHeartbeatSynRequest implements AlipayRequest<MonitorHeartbea
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class MonitorHeartbeatSynRequest implements AlipayRequest<MonitorHeartbea
 	public Class<MonitorHeartbeatSynResponse> getResponseClass() {
 		return MonitorHeartbeatSynResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

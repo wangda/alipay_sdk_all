@@ -10,11 +10,11 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 商品销售规则
  *
  * @author auto create
- * @since 1.0, 2016-02-29 15:31:06
+ * @since 1.0, 2016-06-27 17:15:10
  */
 public class AlipayItemSalesRule extends AlipayObject {
 
-	private static final long serialVersionUID = 2685147828392312985L;
+	private static final long serialVersionUID = 8215999972522658268L;
 
 	/**
 	 * 购买人群限制集合，开放平台暂时不支持此字段，如果需要使用，需要评估

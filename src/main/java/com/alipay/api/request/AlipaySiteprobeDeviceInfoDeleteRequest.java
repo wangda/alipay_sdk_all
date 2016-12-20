@@ -32,6 +32,8 @@ public class AlipaySiteprobeDeviceInfoDeleteRequest implements AlipayRequest<Ali
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipaySiteprobeDeviceInfoDeleteRequest implements AlipayRequest<Ali
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipaySiteprobeDeviceInfoDeleteRequest implements AlipayRequest<Ali
 	public Class<AlipaySiteprobeDeviceInfoDeleteResponse> getResponseClass() {
 		return AlipaySiteprobeDeviceInfoDeleteResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

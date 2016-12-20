@@ -12,11 +12,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.trade.query response.
  * 
  * @author auto create
- * @since 1.0, 2015-12-04 21:45:51
+ * @since 1.0, 2016-05-30 10:49:48
  */
 public class AlipayTradeQueryResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 2225387452523525464L;
+	private static final long serialVersionUID = 1143549195195121527L;
 
 	/** 
 	 * 支付宝店铺编号
@@ -31,7 +31,7 @@ public class AlipayTradeQueryResponse extends AlipayResponse {
 	private String buyerLogonId;
 
 	/** 
-	 * 买家实付金额
+	 * 买家实付金额，单位为元，两位小数。
 	 */
 	@ApiField("buyer_pay_amount")
 	private String buyerPayAmount;
@@ -49,20 +49,26 @@ public class AlipayTradeQueryResponse extends AlipayResponse {
 	private String discountGoodsDetail;
 
 	/** 
-	 * 资金单据信息的集合
+	 * 交易支付使用的资金渠道
 	 */
 	@ApiListField("fund_bill_list")
 	@ApiField("trade_fund_bill")
 	private List<TradeFundBill> fundBillList;
 
 	/** 
-	 * 交易中用户支付的可开具发票的金额
+	 * 行业特殊信息（例如在医保卡支付业务中，向用户返回医疗信息）。
+	 */
+	@ApiField("industry_sepc_detail")
+	private String industrySepcDetail;
+
+	/** 
+	 * 交易中用户支付的可开具发票的金额，单位为元，两位小数。
 	 */
 	@ApiField("invoice_amount")
 	private String invoiceAmount;
 
 	/** 
-	 * 买家支付宝用户号
+	 * 买家支付宝用户号，该字段将废弃，不要使用
 	 */
 	@ApiField("open_id")
 	private String openId;
@@ -74,13 +80,13 @@ public class AlipayTradeQueryResponse extends AlipayResponse {
 	private String outTradeNo;
 
 	/** 
-	 * 积分支付的金额
+	 * 积分支付的金额，单位为元，两位小数。
 	 */
 	@ApiField("point_amount")
 	private String pointAmount;
 
 	/** 
-	 * 实收金额
+	 * 实收金额，单位为元，两位小数。
 	 */
 	@ApiField("receipt_amount")
 	private String receiptAmount;
@@ -110,7 +116,7 @@ public class AlipayTradeQueryResponse extends AlipayResponse {
 	private String terminalId;
 
 	/** 
-	 * 交易的订单金额
+	 * 交易的订单金额，单位为元，两位小数。
 	 */
 	@ApiField("total_amount")
 	private String totalAmount;
@@ -122,7 +128,7 @@ public class AlipayTradeQueryResponse extends AlipayResponse {
 	private String tradeNo;
 
 	/** 
-	 * 交易状态
+	 * 交易状态：WAIT_BUYER_PAY（交易创建，等待买家付款）、TRADE_CLOSED（未付款交易超时关闭，或支付完成后全额退款）、TRADE_SUCCESS（交易支付成功）、TRADE_FINISHED（交易结束，不可退款）
 	 */
 	@ApiField("trade_status")
 	private String tradeStatus;
@@ -167,6 +173,13 @@ public class AlipayTradeQueryResponse extends AlipayResponse {
 	}
 	public List<TradeFundBill> getFundBillList( ) {
 		return this.fundBillList;
+	}
+
+	public void setIndustrySepcDetail(String industrySepcDetail) {
+		this.industrySepcDetail = industrySepcDetail;
+	}
+	public String getIndustrySepcDetail( ) {
+		return this.industrySepcDetail;
 	}
 
 	public void setInvoiceAmount(String invoiceAmount) {

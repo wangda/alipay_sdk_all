@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayOpenPublicThirdCustomerServiceResponse;
  * ALIPAY API: alipay.open.public.third.customer.service request
  * 
  * @author auto create
- * @since 1.0, 2016-01-06 21:22:48
+ * @since 1.0, 2016-03-31 21:02:52
  */
 public class AlipayOpenPublicThirdCustomerServiceRequest implements AlipayRequest<AlipayOpenPublicThirdCustomerServiceResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayOpenPublicThirdCustomerServiceRequest implements AlipayReques
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayOpenPublicThirdCustomerServiceRequest implements AlipayReques
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayOpenPublicThirdCustomerServiceRequest implements AlipayReques
 	public Class<AlipayOpenPublicThirdCustomerServiceResponse> getResponseClass() {
 		return AlipayOpenPublicThirdCustomerServiceResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

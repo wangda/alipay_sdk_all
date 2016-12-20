@@ -31,14 +31,27 @@ public class ObjectXmlParser<T extends AlipayResponse> implements AlipayParser<T
     }
 
     /** 
-     * @see com.alipay.api.AlipayParser#getSignItem(com.alipay.api.AlipayRequest, com.alipay.api.AlipayResponse)
+     * @see com.alipay.api.AlipayParser#getSignItem(com.alipay.api.AlipayRequest, String)
      */
-    public SignItem getSignItem(AlipayRequest<?> request, AlipayResponse response)
-                                                                                  throws AlipayApiException {
+    public SignItem getSignItem(AlipayRequest<?> request, String responseBody)
+                                                                              throws AlipayApiException {
 
         Converter converter = new XmlConverter();
 
-        return converter.getSignItem(request, response);
+        return converter.getSignItem(request, responseBody);
+    }
+
+    /** 
+     * @see com.alipay.api.AlipayParser#encryptSourceData(com.alipay.api.AlipayRequest, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+     */
+    public String encryptSourceData(AlipayRequest<?> request, String body, String format,
+                                       String encryptType, String encryptKey, String charset)
+                                                                                             throws AlipayApiException {
+
+        Converter converter = new XmlConverter();
+
+        return converter.encryptSourceData(request, body, format, encryptType, encryptKey,
+            charset);
     }
 
 }

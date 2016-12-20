@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayEbppPdeductBillPayStatusResponse;
  * ALIPAY API: alipay.ebpp.pdeduct.bill.pay.status request
  * 
  * @author auto create
- * @since 1.0, 2015-01-16 22:48:35
+ * @since 1.0, 2016-07-28 22:59:51
  */
 public class AlipayEbppPdeductBillPayStatusRequest implements AlipayRequest<AlipayEbppPdeductBillPayStatusResponse> {
 
@@ -44,6 +44,8 @@ public class AlipayEbppPdeductBillPayStatusRequest implements AlipayRequest<Alip
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -51,6 +53,14 @@ public class AlipayEbppPdeductBillPayStatusRequest implements AlipayRequest<Alip
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -109,4 +119,18 @@ public class AlipayEbppPdeductBillPayStatusRequest implements AlipayRequest<Alip
 	public Class<AlipayEbppPdeductBillPayStatusResponse> getResponseClass() {
 		return AlipayEbppPdeductBillPayStatusResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

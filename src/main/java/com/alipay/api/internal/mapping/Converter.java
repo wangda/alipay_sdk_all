@@ -29,11 +29,27 @@ public interface Converter {
      * 获取响应内的签名数据
      * 
      * @param request
-     * @param response
+     * @param responseBody
      * @return
      * @throws AlipayApiException
      */
-    public SignItem getSignItem(AlipayRequest<?> request, AlipayResponse response)
-                                                                                  throws AlipayApiException;
+    public SignItem getSignItem(AlipayRequest<?> request, String responseBody)
+                                                                              throws AlipayApiException;
+
+    /**
+     *  获取解密后的响应内的真实内容
+     * 
+     * @param request
+     * @param body
+     * @param format
+     * @param encryptType
+     * @param encryptKey
+     * @param charset
+     * @return
+     * @throws AlipayApiException
+     */
+    public String encryptSourceData(AlipayRequest<?> request, String body, String format,
+                                       String encryptType, String encryptKey, String charset)
+                                                                                             throws AlipayApiException;
 
 }

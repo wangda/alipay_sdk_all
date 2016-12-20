@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobilePublicMenuDeleteResponse;
  * ALIPAY API: alipay.mobile.public.menu.delete request
  * 
  * @author auto create
- * @since 1.0, 2016-03-01 17:17:29
+ * @since 1.0, 2016-03-31 21:02:26
  */
 public class AlipayMobilePublicMenuDeleteRequest implements AlipayRequest<AlipayMobilePublicMenuDeleteResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayMobilePublicMenuDeleteRequest implements AlipayRequest<Alipay
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayMobilePublicMenuDeleteRequest implements AlipayRequest<Alipay
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayMobilePublicMenuDeleteRequest implements AlipayRequest<Alipay
 	public Class<AlipayMobilePublicMenuDeleteResponse> getResponseClass() {
 		return AlipayMobilePublicMenuDeleteResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

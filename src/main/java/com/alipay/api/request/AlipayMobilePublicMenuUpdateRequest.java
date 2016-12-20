@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobilePublicMenuUpdateResponse;
  * ALIPAY API: alipay.mobile.public.menu.update request
  * 
  * @author auto create
- * @since 1.0, 2016-01-05 22:36:41
+ * @since 1.0, 2016-07-29 19:57:40
  */
 public class AlipayMobilePublicMenuUpdateRequest implements AlipayRequest<AlipayMobilePublicMenuUpdateResponse> {
 
@@ -18,7 +18,7 @@ public class AlipayMobilePublicMenuUpdateRequest implements AlipayRequest<Alipay
 	private String apiVersion="1.0";
 
 	/** 
-	* 更新菜单
+	* json串，<a href="https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7386797.0.0.1l7WMo&treeId=53&articleId=103481&docType=1">详情请见</a>
 	 */
 	private String bizContent;
 
@@ -32,6 +32,8 @@ public class AlipayMobilePublicMenuUpdateRequest implements AlipayRequest<Alipay
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayMobilePublicMenuUpdateRequest implements AlipayRequest<Alipay
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayMobilePublicMenuUpdateRequest implements AlipayRequest<Alipay
 	public Class<AlipayMobilePublicMenuUpdateResponse> getResponseClass() {
 		return AlipayMobilePublicMenuUpdateResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

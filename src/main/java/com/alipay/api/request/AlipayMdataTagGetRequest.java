@@ -45,6 +45,8 @@ public class AlipayMdataTagGetRequest implements AlipayRequest<AlipayMdataTagGet
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -52,6 +54,14 @@ public class AlipayMdataTagGetRequest implements AlipayRequest<AlipayMdataTagGet
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -110,4 +120,18 @@ public class AlipayMdataTagGetRequest implements AlipayRequest<AlipayMdataTagGet
 	public Class<AlipayMdataTagGetResponse> getResponseClass() {
 		return AlipayMdataTagGetResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

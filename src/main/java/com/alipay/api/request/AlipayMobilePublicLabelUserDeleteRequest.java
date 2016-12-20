@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobilePublicLabelUserDeleteResponse;
  * ALIPAY API: alipay.mobile.public.label.user.delete request
  * 
  * @author auto create
- * @since 1.0, 2016-01-05 10:19:26
+ * @since 1.0, 2016-07-29 19:58:34
  */
 public class AlipayMobilePublicLabelUserDeleteRequest implements AlipayRequest<AlipayMobilePublicLabelUserDeleteResponse> {
 
@@ -18,7 +18,7 @@ public class AlipayMobilePublicLabelUserDeleteRequest implements AlipayRequest<A
 	private String apiVersion="1.0";
 
 	/** 
-	* JSON串
+	* json串，<a href="https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7386797.0.0.1l7WMo&treeId=53&articleId=103510&docType=1">详情请见</a>
 	 */
 	private String bizContent;
 
@@ -32,6 +32,8 @@ public class AlipayMobilePublicLabelUserDeleteRequest implements AlipayRequest<A
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayMobilePublicLabelUserDeleteRequest implements AlipayRequest<A
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayMobilePublicLabelUserDeleteRequest implements AlipayRequest<A
 	public Class<AlipayMobilePublicLabelUserDeleteResponse> getResponseClass() {
 		return AlipayMobilePublicLabelUserDeleteResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

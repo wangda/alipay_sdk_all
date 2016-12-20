@@ -10,20 +10,27 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 商品适用信息(数据)
  *
  * @author auto create
- * @since 1.0, 2015-10-30 10:11:15
+ * @since 1.0, 2016-05-26 13:26:04
  */
 public class AlipayDataItemLimitPeriodInfo extends AlipayObject {
 
-	private static final long serialVersionUID = 8195389789452853868L;
+	private static final long serialVersionUID = 1432477624363824381L;
 
 	/**
-	 * 区间范围枚举
+	 * 区间范围枚举，分为： INCLUDE（包含） EXCLUDE（排除）
 	 */
 	@ApiField("rule")
 	private String rule;
 
 	/**
-	 * 单位描述
+	 * 单位描述，分为：
+MINUTE（分钟）
+HOUR（小时）
+WEEK_DAY（星期几）
+DAY（日）
+WEEK（周）
+MONTH（月）
+ALL（整个销售周期）
 	 */
 	@ApiField("unit")
 	private String unit;

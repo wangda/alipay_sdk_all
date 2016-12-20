@@ -7,17 +7,23 @@ import com.alipay.api.internal.mapping.ApiField;
  * 订单明细
  *
  * @author auto create
- * @since 1.0, 2016-02-24 11:47:21
+ * @since 1.0, 2016-06-16 21:01:19
  */
 public class OrderItem extends AlipayObject {
 
-	private static final long serialVersionUID = 8412638665977397831L;
+	private static final long serialVersionUID = 1381469486746723812L;
 
 	/**
 	 * 店铺所在具体位置
 	 */
 	@ApiField("address")
 	private String address;
+
+	/**
+	 * 品牌名称
+	 */
+	@ApiField("brand_name")
+	private String brandName;
 
 	/**
 	 * 店铺品类
@@ -32,13 +38,43 @@ public class OrderItem extends AlipayObject {
 	private String city;
 
 	/**
-	 * 门店创建人
+	 * 订购的服务商品ID
+	 */
+	@ApiField("commodity_id")
+	private String commodityId;
+
+	/**
+	 * 订单联系人
+	 */
+	@ApiField("contacts")
+	private String contacts;
+
+	/**
+	 * 门店创建人(已删除)
 	 */
 	@ApiField("creator")
 	private String creator;
 
 	/**
-	 * 门店联系人（手机或者座机）
+	 * 过期时间
+	 */
+	@ApiField("expire_date")
+	private String expireDate;
+
+	/**
+	 * 上架时间
+	 */
+	@ApiField("online_time")
+	private String onlineTime;
+
+	/**
+	 * TO_DO-未实施,DOING-实施中,TO_CONFIRM-待商户确认,DONE-已完成,MERCHANT_REJECTED-商户已回绝,MERCHANT_CANCELLED-商户已取消,ISV_REJECTED-服务商已回绝,ISV_CANCELLED-服务商已取消
+	 */
+	@ApiField("order_status")
+	private String orderStatus;
+
+	/**
+	 * 订单所属人联系方式（手机或者座机）
 	 */
 	@ApiField("phone_no")
 	private String phoneNo;
@@ -61,11 +97,30 @@ public class OrderItem extends AlipayObject {
 	@ApiField("shop_name")
 	private String shopName;
 
+	/**
+	 * 店铺状态（ONLINE--已上架 OFFLINE--未上架 AVAILABLE--已开通 INIT--未开通 EXPIRED--已过期）
+	 */
+	@ApiField("shop_status")
+	private String shopStatus;
+
+	/**
+	 * 待服务商接单
+	 */
+	@ApiField("status")
+	private String status;
+
 	public String getAddress() {
 		return this.address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getBrandName() {
+		return this.brandName;
+	}
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 
 	public String getCategory() {
@@ -82,11 +137,46 @@ public class OrderItem extends AlipayObject {
 		this.city = city;
 	}
 
+	public String getCommodityId() {
+		return this.commodityId;
+	}
+	public void setCommodityId(String commodityId) {
+		this.commodityId = commodityId;
+	}
+
+	public String getContacts() {
+		return this.contacts;
+	}
+	public void setContacts(String contacts) {
+		this.contacts = contacts;
+	}
+
 	public String getCreator() {
 		return this.creator;
 	}
 	public void setCreator(String creator) {
 		this.creator = creator;
+	}
+
+	public String getExpireDate() {
+		return this.expireDate;
+	}
+	public void setExpireDate(String expireDate) {
+		this.expireDate = expireDate;
+	}
+
+	public String getOnlineTime() {
+		return this.onlineTime;
+	}
+	public void setOnlineTime(String onlineTime) {
+		this.onlineTime = onlineTime;
+	}
+
+	public String getOrderStatus() {
+		return this.orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public String getPhoneNo() {
@@ -115,6 +205,20 @@ public class OrderItem extends AlipayObject {
 	}
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+
+	public String getShopStatus() {
+		return this.shopStatus;
+	}
+	public void setShopStatus(String shopStatus) {
+		this.shopStatus = shopStatus;
+	}
+
+	public String getStatus() {
+		return this.status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

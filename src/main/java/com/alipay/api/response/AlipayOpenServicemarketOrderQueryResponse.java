@@ -11,11 +11,17 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.open.servicemarket.order.query response.
  * 
  * @author auto create
- * @since 1.0, 2016-02-24 11:47:21
+ * @since 1.0, 2016-06-16 21:01:19
  */
 public class AlipayOpenServicemarketOrderQueryResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 1467479239826331836L;
+	private static final long serialVersionUID = 7277167362428935536L;
+
+	/** 
+	 * 订购服务商品ID
+	 */
+	@ApiField("commodity_id")
+	private String commodityId;
 
 	/** 
 	 * 当前查询页（本接口支持最多查询100条记录）
@@ -31,10 +37,23 @@ public class AlipayOpenServicemarketOrderQueryResponse extends AlipayResponse {
 	private List<OrderItem> orderItems;
 
 	/** 
+	 * MERCHANT_ORDED（待服务商接单）
+	 */
+	@ApiField("status")
+	private String status;
+
+	/** 
 	 * 总记录数
 	 */
 	@ApiField("total_size")
 	private Long totalSize;
+
+	public void setCommodityId(String commodityId) {
+		this.commodityId = commodityId;
+	}
+	public String getCommodityId( ) {
+		return this.commodityId;
+	}
 
 	public void setCurrentPage(Long currentPage) {
 		this.currentPage = currentPage;
@@ -48,6 +67,13 @@ public class AlipayOpenServicemarketOrderQueryResponse extends AlipayResponse {
 	}
 	public List<OrderItem> getOrderItems( ) {
 		return this.orderItems;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getStatus( ) {
+		return this.status;
 	}
 
 	public void setTotalSize(Long totalSize) {

@@ -8,38 +8,39 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.market.shop.modify response.
  * 
  * @author auto create
- * @since 1.0, 2016-03-01 23:39:07
+ * @since 1.0, 2016-07-29 18:44:41
  */
 public class AlipayOfflineMarketShopModifyResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 4372295263798943189L;
+	private static final long serialVersionUID = 3655433636887772173L;
 
 	/** 
-	 * ISV每次请求都会在支付宝保存一条流水，apply_id为流水Id,此字段留作后续功能扩展使用
+	 * 修改门店请求受理成功后返回的支付宝流水ID，根据此ID调用接口
+alipay.offline.market.applyorder.batchquery，能够获取当前修改店铺请求审核状态、驳回原因等信息。
 	 */
 	@ApiField("apply_id")
 	private String applyId;
 
 	/** 
-	 * 门店审核状态描述，如果审核驳回则有相关的驳回理由
+	 * 废弃字段。
 	 */
 	@ApiField("audit_desc")
 	private String auditDesc;
 
 	/** 
-	 * 门店审核状态，对于系统商而言，只有三个状态，AUDITING：审核中，AUDIT_FAILED：审核驳回，AUDIT_SUCCESS：审核通过。第一次审核通过会触发门店上架。
+	 * 同步请求如果支付宝受理成功，将返回AUDITING状态。
 	 */
 	@ApiField("audit_status")
 	private String auditStatus;
 
 	/** 
-	 * 门店是否上架，T表示上架,F表示未上架，第一次门店审核通过后会触发上架
+	 * 废弃字段，T表示上架,F表示未上架。
 	 */
 	@ApiField("is_online")
 	private String isOnline;
 
 	/** 
-	 * 门店是否在客户端显示，T表示显示，F表示隐藏
+	 * 废弃字段，T表示显示，F表示隐藏。
 	 */
 	@ApiField("is_show")
 	private String isShow;

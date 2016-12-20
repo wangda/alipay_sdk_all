@@ -10,11 +10,11 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 单品信息列表（数据）
  *
  * @author auto create
- * @since 1.0, 2015-10-30 10:11:15
+ * @since 1.0, 2016-05-26 13:26:04
  */
 public class AlipayDataItemGoodsList extends AlipayObject {
 
-	private static final long serialVersionUID = 4813338267847643977L;
+	private static final long serialVersionUID = 4122366884376864966L;
 
 	/**
 	 * 单品的描述信息

@@ -1,5 +1,6 @@
 package com.alipay.api.response;
 
+import java.util.Date;
 import com.alipay.api.internal.mapping.ApiField;
 
 import com.alipay.api.AlipayResponse;
@@ -8,14 +9,14 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.marketing.cdp.advertise.query response.
  * 
  * @author auto create
- * @since 1.0, 2016-02-26 15:30:33
+ * @since 1.0, 2016-07-18 16:41:57
  */
 public class AlipayMarketingCdpAdvertiseQueryResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 5259236934624773381L;
+	private static final long serialVersionUID = 2843789118575496542L;
 
 	/** 
-	 * 用户点击广告后，跳转URL地址，必须为https协议。
+	 * 用户点击广告后，跳转URL地址, 协议必须为HTTPS。广告类型为PIC时，需要设置该值。对于类型为URL不生效
 	 */
 	@ApiField("action_url")
 	private String actionUrl;
@@ -33,22 +34,34 @@ public class AlipayMarketingCdpAdvertiseQueryResponse extends AlipayResponse {
 	private String adRules;
 
 	/** 
-	 * 广告内容。如果广告类型是HTML5，则传入H5链接地址，必须为https协议。最大尺寸不得超过1242px＊242px，小屏幕将按分辨率宽度同比例放大缩小；如果类型是图片，则传入图片ID标识，如何获取图片ID参考图片上传接口：alipay.offline.material.image.upload。图片尺寸为1242px＊290px。图片大小不能超过50kb。
+	 * 广告内容。如果广告类型是HTML5，则传入H5链接地址，建议为https协议。最大尺寸不得超过1242px＊242px，小屏幕将按分辨率宽度同比例放大缩小；如果类型是图片，则传入图片ID标识，如何获取图片ID参考图片上传接口：alipay.offline.material.image.upload。图片尺寸为1242px＊290px。图片大小不能超过50kb。
 	 */
 	@ApiField("content")
 	private String content;
 
 	/** 
-	 * 广告内容类型，目前包括HTML5和图片，分别传入：H5和PIC
+	 * 广告内容类型，目前包括HTML5和图片，分别传入：URL和PIC
 	 */
 	@ApiField("content_type")
 	private String contentType;
+
+	/** 
+	 * 投放广告结束时间，使用标准时间格式：yyyy-MM-dd HH:mm:ss，如果不设置，默认投放时间一个月
+	 */
+	@ApiField("end_time")
+	private Date endTime;
 
 	/** 
 	 * 当广告类型是H5时，必须传入内容高度。对于广告位CDP_OPEN_MERCHANT的内容高度不能高于钱包要求的展位高度242px。当广告类型是图片时，不需要传入内容高度(height)，系统会检查用户上传的图片尺寸是否符合要求，对于广告位CDP_OPEN_MERCHANT的图片尺寸要求：宽1242px, 高290px,大小50kb，实际上传图片与图片标准宽高必须一致，图片大小不能超过50kb。
 	 */
 	@ApiField("height")
 	private String height;
+
+	/** 
+	 * 投放广告开始时间，使用标准时间格式：yyyy-MM-dd HH:mm:ss，如果不设置，默认投放时间一个月
+	 */
+	@ApiField("start_time")
+	private Date startTime;
 
 	/** 
 	 * 在线：ONLINE , 下线：OFFLINE
@@ -91,11 +104,25 @@ public class AlipayMarketingCdpAdvertiseQueryResponse extends AlipayResponse {
 		return this.contentType;
 	}
 
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+	public Date getEndTime( ) {
+		return this.endTime;
+	}
+
 	public void setHeight(String height) {
 		this.height = height;
 	}
 	public String getHeight( ) {
 		return this.height;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+	public Date getStartTime( ) {
+		return this.startTime;
 	}
 
 	public void setStatus(String status) {

@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayOfflineSaleleadsInfoAddResponse;
  * ALIPAY API: alipay.offline.saleleads.info.add request
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 19:30:47
+ * @since 1.0, 2016-05-16 16:13:33
  */
 public class AlipayOfflineSaleleadsInfoAddRequest implements AlipayRequest<AlipayOfflineSaleleadsInfoAddResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayOfflineSaleleadsInfoAddRequest implements AlipayRequest<Alipa
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayOfflineSaleleadsInfoAddRequest implements AlipayRequest<Alipa
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayOfflineSaleleadsInfoAddRequest implements AlipayRequest<Alipa
 	public Class<AlipayOfflineSaleleadsInfoAddResponse> getResponseClass() {
 		return AlipayOfflineSaleleadsInfoAddResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

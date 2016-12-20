@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayUserUserinfoShareResponse;
  * ALIPAY API: alipay.user.userinfo.share request
  * 
  * @author auto create
- * @since 1.0, 2015-10-26 15:43:23
+ * @since 1.0, 2016-06-08 10:35:37
  */
 public class AlipayUserUserinfoShareRequest implements AlipayRequest<AlipayUserUserinfoShareResponse> {
 
@@ -20,6 +20,8 @@ public class AlipayUserUserinfoShareRequest implements AlipayRequest<AlipayUserU
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -27,6 +29,14 @@ public class AlipayUserUserinfoShareRequest implements AlipayRequest<AlipayUserU
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -83,4 +93,18 @@ public class AlipayUserUserinfoShareRequest implements AlipayRequest<AlipayUserU
 	public Class<AlipayUserUserinfoShareResponse> getResponseClass() {
 		return AlipayUserUserinfoShareResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

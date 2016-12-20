@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.saleleads.claimstatus response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 19:31:45
+ * @since 1.0, 2016-05-16 16:13:23
  */
 public class AlipayOfflineSaleleadsClaimstatusResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 1559458694461449241L;
+	private static final long serialVersionUID = 5399241275479374355L;
 
 	/** 
 	 * success(成功);fail(失败)

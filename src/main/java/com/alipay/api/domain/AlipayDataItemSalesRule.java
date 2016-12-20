@@ -10,11 +10,17 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 商品销售规则(数据)
  *
  * @author auto create
- * @since 1.0, 2015-10-30 10:11:15
+ * @since 1.0, 2016-05-26 13:26:04
  */
 public class AlipayDataItemSalesRule extends AlipayObject {
 
-	private static final long serialVersionUID = 5884633614811974913L;
+	private static final long serialVersionUID = 4526681578851917897L;
+
+	/**
+	 * 购买人群限制集合，开放平台暂时不支持此字段，如果需要使用，需要评估
+	 */
+	@ApiField("buyer_crowd_limit")
+	private String buyerCrowdLimit;
 
 	/**
 	 * 商品单日销售上限
@@ -23,11 +29,20 @@ public class AlipayDataItemSalesRule extends AlipayObject {
 	private Long dailySalesLimit;
 
 	/**
-	 * 用户购买策略
+	 * 用户购买策略如不填，则默认值为一个用户一天可以领取三次。
+可限制DAY、WEEK、MONTH中n天领取m次，格式为DAY|n|m；
+同时也可限制券的1次生命周期中可被领取x次，如ALL|1|x，两个规则可组合使用
 	 */
 	@ApiListField("user_sales_limit")
 	@ApiField("string")
 	private List<String> userSalesLimit;
+
+	public String getBuyerCrowdLimit() {
+		return this.buyerCrowdLimit;
+	}
+	public void setBuyerCrowdLimit(String buyerCrowdLimit) {
+		this.buyerCrowdLimit = buyerCrowdLimit;
+	}
 
 	public Long getDailySalesLimit() {
 		return this.dailySalesLimit;

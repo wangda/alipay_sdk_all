@@ -1,5 +1,6 @@
 package com.alipay.api.request;
 
+import com.alipay.api.domain.AlipayTradeCancelModel;
 import java.util.Map;
 
 import com.alipay.api.AlipayRequest;
@@ -10,7 +11,7 @@ import com.alipay.api.response.AlipayTradeCancelResponse;
  * ALIPAY API: alipay.trade.cancel request
  * 
  * @author auto create
- * @since 1.0, 2015-12-04 21:46:00
+ * @since 1.0, 2016-05-30 10:18:16
  */
 public class AlipayTradeCancelRequest implements AlipayRequest<AlipayTradeCancelResponse> {
 
@@ -18,7 +19,7 @@ public class AlipayTradeCancelRequest implements AlipayRequest<AlipayTradeCancel
 	private String apiVersion="1.0";
 
 	/** 
-	* 业务请求接口的参数体，JSON格式，具体包含的内容参见各个接口的请求参数
+	* 统一收单交易撤销接口
 	 */
 	private String bizContent;
 
@@ -32,6 +33,8 @@ public class AlipayTradeCancelRequest implements AlipayRequest<AlipayTradeCancel
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +42,14 @@ public class AlipayTradeCancelRequest implements AlipayRequest<AlipayTradeCancel
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +107,18 @@ public class AlipayTradeCancelRequest implements AlipayRequest<AlipayTradeCancel
 	public Class<AlipayTradeCancelResponse> getResponseClass() {
 		return AlipayTradeCancelResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

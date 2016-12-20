@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 开放活动接口活动
  *
  * @author auto create
- * @since 1.0, 2016-01-13 10:09:24
+ * @since 1.0, 2016-03-14 15:03:10
  */
 public class OpenPromoCamp extends AlipayObject {
 
-	private static final long serialVersionUID = 7641771241531611949L;
+	private static final long serialVersionUID = 2217272653135275319L;
 
 	/**
 	 * 简短活动名，默认和活动名称相同

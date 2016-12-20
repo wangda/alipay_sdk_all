@@ -99,10 +99,38 @@ public interface AlipayRequest<T extends AlipayResponse> {
     public void setNotifyUrl(String notifyUrl);
 
     /**
+     * 返回回跳地址
+     * 
+     * @return
+     */
+    public String getReturnUrl();
+
+    /**
+     *  设置回跳地址
+     * 
+     * @param notifyUrl
+     */
+    public void setReturnUrl(String returnUrl);
+
+    /**
      * 得到当前API的响应结果类型
      * 
      * @return 响应类型
      */
     public Class<T> getResponseClass();
+
+    /**
+     * 判断是否需要加密
+     * 
+     * @return
+     */
+    public boolean isNeedEncrypt();
+
+    /**
+     * 设置请求是否需要加密
+     * 
+     * @param needEncrypt
+     */
+    public void setNeedEncrypt(boolean needEncrypt);
 
 }

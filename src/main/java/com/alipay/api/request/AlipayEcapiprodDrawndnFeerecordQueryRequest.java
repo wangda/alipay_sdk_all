@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayEcapiprodDrawndnFeerecordQueryResponse;
  * ALIPAY API: alipay.ecapiprod.drawndn.feerecord.query request
  * 
  * @author auto create
- * @since 1.0, 2015-04-02 16:44:56
+ * @since 1.0, 2016-03-29 11:34:27
  */
 public class AlipayEcapiprodDrawndnFeerecordQueryRequest implements AlipayRequest<AlipayEcapiprodDrawndnFeerecordQueryResponse> {
 
@@ -104,6 +104,8 @@ public class AlipayEcapiprodDrawndnFeerecordQueryRequest implements AlipayReques
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -111,6 +113,14 @@ public class AlipayEcapiprodDrawndnFeerecordQueryRequest implements AlipayReques
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -174,4 +184,18 @@ public class AlipayEcapiprodDrawndnFeerecordQueryRequest implements AlipayReques
 	public Class<AlipayEcapiprodDrawndnFeerecordQueryResponse> getResponseClass() {
 		return AlipayEcapiprodDrawndnFeerecordQueryResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

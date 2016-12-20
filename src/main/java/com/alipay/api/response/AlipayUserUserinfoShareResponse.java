@@ -11,11 +11,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.user.userinfo.share response.
  * 
  * @author auto create
- * @since 1.0, 2015-10-26 15:43:23
+ * @since 1.0, 2016-06-08 10:35:37
  */
 public class AlipayUserUserinfoShareResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 5766995855269583394L;
+	private static final long serialVersionUID = 1432252911182229757L;
 
 	/** 
 	 * 详细地址。
@@ -46,6 +46,20 @@ public class AlipayUserUserinfoShareResponse extends AlipayResponse {
 	 */
 	@ApiField("avatar")
 	private String avatar;
+
+	/** 
+	 * 【注意】当is_balance_frozen为“F”时，改字段不会返回.
+CTU ---- CTU冻结，允许用户开启
+ALIBABA ---- ALIBABA冻结，允许用户开启
+SERVER ---- 后台冻结，允许用户开启
+USER ----  用户冻结 
+CTU_N---- CTU冻结，不允许用户开启
+ALIBABA_N ---- ALIBABA冻结，不允许用户开启
+SERVER_N ---- 后台冻结，不允许用户开启
+UNKNOWN ---- 降级、或查询超时
+	 */
+	@ApiField("balance_freeze_type")
+	private String balanceFreezeType;
 
 	/** 
 	 * 用户生日
@@ -137,6 +151,12 @@ public class AlipayUserUserinfoShareResponse extends AlipayResponse {
 	private String email;
 
 	/** 
+	 * 姓氏，取的是realName中的首个字符，对非中文、中文复姓支持较差。
+	 */
+	@ApiField("family_name")
+	private String familyName;
+
+	/** 
 	 * 公司名称（用户类型是公司类型时公司名称才有此字段）。
 	 */
 	@ApiField("firm_name")
@@ -147,6 +167,12 @@ public class AlipayUserUserinfoShareResponse extends AlipayResponse {
 	 */
 	@ApiField("gender")
 	private String gender;
+
+	/** 
+	 * T--被冻结；F--未冻结
+	 */
+	@ApiField("is_balance_frozen")
+	private String isBalanceFrozen;
 
 	/** 
 	 * T为是银行卡认证，F为非银行卡认证。
@@ -221,6 +247,12 @@ public class AlipayUserUserinfoShareResponse extends AlipayResponse {
 	private String realName;
 
 	/** 
+	 * 生日的月和日，MMdd格式
+	 */
+	@ApiField("reduced_birthday")
+	private String reducedBirthday;
+
+	/** 
 	 * 用户的userId
 	 */
 	@ApiField("user_id")
@@ -282,6 +314,13 @@ W代表已注册，未激活的账户
 	}
 	public String getAvatar( ) {
 		return this.avatar;
+	}
+
+	public void setBalanceFreezeType(String balanceFreezeType) {
+		this.balanceFreezeType = balanceFreezeType;
+	}
+	public String getBalanceFreezeType( ) {
+		return this.balanceFreezeType;
 	}
 
 	public void setBirthday(String birthday) {
@@ -375,6 +414,13 @@ W代表已注册，未激活的账户
 		return this.email;
 	}
 
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
+	}
+	public String getFamilyName( ) {
+		return this.familyName;
+	}
+
 	public void setFirmName(String firmName) {
 		this.firmName = firmName;
 	}
@@ -387,6 +433,13 @@ W代表已注册，未激活的账户
 	}
 	public String getGender( ) {
 		return this.gender;
+	}
+
+	public void setIsBalanceFrozen(String isBalanceFrozen) {
+		this.isBalanceFrozen = isBalanceFrozen;
+	}
+	public String getIsBalanceFrozen( ) {
+		return this.isBalanceFrozen;
 	}
 
 	public void setIsBankAuth(String isBankAuth) {
@@ -471,6 +524,13 @@ W代表已注册，未激活的账户
 	}
 	public String getRealName( ) {
 		return this.realName;
+	}
+
+	public void setReducedBirthday(String reducedBirthday) {
+		this.reducedBirthday = reducedBirthday;
+	}
+	public String getReducedBirthday( ) {
+		return this.reducedBirthday;
 	}
 
 	public void setUserId(String userId) {

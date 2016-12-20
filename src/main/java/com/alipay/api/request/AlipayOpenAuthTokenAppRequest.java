@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayOpenAuthTokenAppResponse;
  * ALIPAY API: alipay.open.auth.token.app request
  * 
  * @author auto create
- * @since 1.0, 2016-01-28 17:51:43
+ * @since 1.0, 2016-07-22 18:43:10
  */
 public class AlipayOpenAuthTokenAppRequest implements AlipayRequest<AlipayOpenAuthTokenAppResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayOpenAuthTokenAppRequest implements AlipayRequest<AlipayOpenAu
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayOpenAuthTokenAppRequest implements AlipayRequest<AlipayOpenAu
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayOpenAuthTokenAppRequest implements AlipayRequest<AlipayOpenAu
 	public Class<AlipayOpenAuthTokenAppResponse> getResponseClass() {
 		return AlipayOpenAuthTokenAppResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 钱包中地铁票购票，获得核销码，线下渠道商凭核销码撤销该笔交易
  *
  * @author auto create
- * @since 1.0, 2015-12-18 16:28:25
+ * @since 1.0, 2016-04-28 14:25:54
  */
 public class AlipayCommerceCityfacilitatorScardcenterTicketCancelModel extends AlipayObject {
 
-	private static final long serialVersionUID = 3315148129176572425L;
+	private static final long serialVersionUID = 8185437142219912191L;
 
 	/**
 	 * 渠道商提供的其它信息

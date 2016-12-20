@@ -14,9 +14,8 @@ import com.alipay.api.internal.util.AlipayHashMap;
  * @author yikai.hu
  * @version $Id: AlipayMobilePublicMultiMediaDownloadRequest.java, v 0.1 Aug 15, 2014 10:19:15 AM yikai.hu Exp $
  */
-public class AlipayMobilePublicMultiMediaDownloadRequest
-                                                        implements
-                                                        AlipayRequest<AlipayMobilePublicMultiMediaDownloadResponse> {
+public class AlipayMobilePublicMultiMediaDownloadRequest implements
+                                                         AlipayRequest<AlipayMobilePublicMultiMediaDownloadResponse> {
 
     private AlipayHashMap udfParams;         // add user-defined text parameters
     private String        apiVersion = "1.0";
@@ -129,6 +128,28 @@ public class AlipayMobilePublicMultiMediaDownloadRequest
 
     public Class<AlipayMobilePublicMultiMediaDownloadResponse> getResponseClass() {
         return AlipayMobilePublicMultiMediaDownloadResponse.class;
+    }
+
+    /** 
+     * @see com.alipay.api.AlipayRequest#isNeedEncrypt()
+     */
+    public boolean isNeedEncrypt() {
+        return false;
+    }
+
+    /** 
+     * @see com.alipay.api.AlipayRequest#setNeedEncrypt(boolean)
+     */
+    public void setNeedEncrypt(boolean needEncrypt) {
+
+        throw new RuntimeException("当前请求不支持加密！");
+    }
+
+    public String getReturnUrl() {
+        return null;
+    }
+
+    public void setReturnUrl(String returnUrl) {
     }
 
 }

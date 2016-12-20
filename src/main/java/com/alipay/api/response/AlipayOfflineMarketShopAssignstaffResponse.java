@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.market.shop.assignstaff response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 19:31:16
+ * @since 1.0, 2016-05-16 16:13:37
  */
 public class AlipayOfflineMarketShopAssignstaffResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 4577211529656689113L;
+	private static final long serialVersionUID = 8786793657598776634L;
 
 	/** 
 	 * 如果失败，存放原因

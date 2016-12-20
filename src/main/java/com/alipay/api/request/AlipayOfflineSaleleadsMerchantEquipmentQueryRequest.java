@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayOfflineSaleleadsMerchantEquipmentQueryRespo
  * ALIPAY API: alipay.offline.saleleads.merchant.equipment.query request
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 19:26:40
+ * @since 1.0, 2016-05-16 16:17:08
  */
 public class AlipayOfflineSaleleadsMerchantEquipmentQueryRequest implements AlipayRequest<AlipayOfflineSaleleadsMerchantEquipmentQueryResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayOfflineSaleleadsMerchantEquipmentQueryRequest implements Alip
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayOfflineSaleleadsMerchantEquipmentQueryRequest implements Alip
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayOfflineSaleleadsMerchantEquipmentQueryRequest implements Alip
 	public Class<AlipayOfflineSaleleadsMerchantEquipmentQueryResponse> getResponseClass() {
 		return AlipayOfflineSaleleadsMerchantEquipmentQueryResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }
