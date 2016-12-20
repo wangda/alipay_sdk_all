@@ -3,8 +3,8 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.alipay</groupId>
-	<artifactId>sdk-all</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<artifactId>alipay-sdk-all</artifactId>
+	<version>1.0.1-RELEASE</version>
 	<packaging>jar</packaging>
 	<name>alipay-sdk-all</name>
 	<url>http://www.trawe.cn</url>
@@ -15,6 +15,20 @@
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
 	</properties>
+     
+<!--      <distributionManagement>  
+        <repository>  
+            <id>nexus-releases</id>  
+            <name>Local Nexus Repository</name>  
+            <url>http://192.168.3.254:8881/nexus/content/repositories/releases/</url>  
+        </repository>  
+        <snapshotRepository>  
+            <id>nexus-snapshots</id>  
+            <name>Local Nexus Repository</name>  
+            <url>http://192.168.3.254:8881/nexus/content/repositories/snapshots/</url>  
+        </snapshotRepository>  
+    </distributionManagement>  --> 
+	
 	
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
