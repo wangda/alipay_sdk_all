@@ -30,6 +30,8 @@ import javax.net.ssl.X509TrustManager;
 import com.alipay.api.AlipayConstants;
 import com.alipay.api.FileItem;
 
+import cn.trawe.alipay.consts.ValidCertSwitch;
+
 /**
  * 网络工具类。
  * 
@@ -79,7 +81,10 @@ public abstract class WebUtils {
 
         verifier = new HostnameVerifier() {
             public boolean verify(String hostname, SSLSession session) {
-                return false;//默认认证不通过，进行证书校验。
+                if(ValidCertSwitch.isValidCert){
+                    return false;//默认认证不通过，进行证书校验。
+                }
+                return true;
             }
         };
 
