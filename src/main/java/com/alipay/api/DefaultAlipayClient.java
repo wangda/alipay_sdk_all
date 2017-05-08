@@ -46,7 +46,7 @@ public class DefaultAlipayClient implements AlipayClient {
 
     private String charset;
 
-    private int    connectTimeout = 3000;
+    private int    connectTimeout = 5000;
     private int    readTimeout    = 15000;
 
     static {
