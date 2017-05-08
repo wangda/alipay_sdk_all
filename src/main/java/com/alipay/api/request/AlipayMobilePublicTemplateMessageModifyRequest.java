@@ -44,6 +44,8 @@ public class AlipayMobilePublicTemplateMessageModifyRequest implements AlipayReq
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -51,6 +53,14 @@ public class AlipayMobilePublicTemplateMessageModifyRequest implements AlipayReq
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -109,4 +119,18 @@ public class AlipayMobilePublicTemplateMessageModifyRequest implements AlipayReq
 	public Class<AlipayMobilePublicTemplateMessageModifyResponse> getResponseClass() {
 		return AlipayMobilePublicTemplateMessageModifyResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

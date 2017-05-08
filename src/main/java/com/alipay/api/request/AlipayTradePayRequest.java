@@ -1,5 +1,6 @@
 package com.alipay.api.request;
 
+import com.alipay.api.domain.AlipayTradePayModel;
 import java.util.Map;
 
 import com.alipay.api.AlipayRequest;
@@ -10,7 +11,7 @@ import com.alipay.api.response.AlipayTradePayResponse;
  * ALIPAY API: alipay.trade.pay request
  * 
  * @author auto create
- * @since 1.0, 2015-12-04 21:45:56
+ * @since 1.0, 2016-07-05 18:27:19
  */
 public class AlipayTradePayRequest implements AlipayRequest<AlipayTradePayResponse> {
 
@@ -18,7 +19,8 @@ public class AlipayTradePayRequest implements AlipayRequest<AlipayTradePayRespon
 	private String apiVersion="1.0";
 
 	/** 
-	* 统一收单支付业务请求
+	* 用于在线下场景交易一次创建并支付掉
+修改路由策略到R
 	 */
 	private String bizContent;
 
@@ -32,6 +34,8 @@ public class AlipayTradePayRequest implements AlipayRequest<AlipayTradePayRespon
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +43,14 @@ public class AlipayTradePayRequest implements AlipayRequest<AlipayTradePayRespon
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +108,18 @@ public class AlipayTradePayRequest implements AlipayRequest<AlipayTradePayRespon
 	public Class<AlipayTradePayResponse> getResponseClass() {
 		return AlipayTradePayResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

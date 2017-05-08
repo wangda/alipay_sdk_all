@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipaySecurityRiskDetectResponse;
  * ALIPAY API: alipay.security.risk.detect request
  * 
  * @author auto create
- * @since 1.0, 2014-06-12 17:15:59
+ * @since 1.0, 2016-03-04 14:55:25
  */
 public class AlipaySecurityRiskDetectRequest implements AlipayRequest<AlipaySecurityRiskDetectResponse> {
 
@@ -692,6 +692,8 @@ public class AlipaySecurityRiskDetectRequest implements AlipayRequest<AlipaySecu
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -699,6 +701,14 @@ public class AlipaySecurityRiskDetectRequest implements AlipayRequest<AlipaySecu
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -811,4 +821,18 @@ public class AlipaySecurityRiskDetectRequest implements AlipayRequest<AlipaySecu
 	public Class<AlipaySecurityRiskDetectResponse> getResponseClass() {
 		return AlipaySecurityRiskDetectResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

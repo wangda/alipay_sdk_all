@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobileStdPublicFollowListResponse;
  * ALIPAY API: alipay.mobile.std.public.follow.list request
  * 
  * @author auto create
- * @since 1.0, 2015-11-30 15:45:22
+ * @since 1.0, 2016-03-24 21:16:13
  */
 public class AlipayMobileStdPublicFollowListRequest implements AlipayRequest<AlipayMobileStdPublicFollowListResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayMobileStdPublicFollowListRequest implements AlipayRequest<Ali
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayMobileStdPublicFollowListRequest implements AlipayRequest<Ali
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayMobileStdPublicFollowListRequest implements AlipayRequest<Ali
 	public Class<AlipayMobileStdPublicFollowListResponse> getResponseClass() {
 		return AlipayMobileStdPublicFollowListResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

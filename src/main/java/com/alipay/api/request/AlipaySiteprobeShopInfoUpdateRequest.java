@@ -36,6 +36,8 @@ h5_rul ：广告页URL（可选，如果未绑定则不包含该字段）
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -43,6 +45,14 @@ h5_rul ：广告页URL（可选，如果未绑定则不包含该字段）
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -100,4 +110,18 @@ h5_rul ：广告页URL（可选，如果未绑定则不包含该字段）
 	public Class<AlipaySiteprobeShopInfoUpdateResponse> getResponseClass() {
 		return AlipaySiteprobeShopInfoUpdateResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

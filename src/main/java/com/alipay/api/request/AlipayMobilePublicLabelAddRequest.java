@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobilePublicLabelAddResponse;
  * ALIPAY API: alipay.mobile.public.label.add request
  * 
  * @author auto create
- * @since 1.0, 2016-01-05 10:22:05
+ * @since 1.0, 2016-07-29 20:00:29
  */
 public class AlipayMobilePublicLabelAddRequest implements AlipayRequest<AlipayMobilePublicLabelAddResponse> {
 
@@ -18,7 +18,7 @@ public class AlipayMobilePublicLabelAddRequest implements AlipayRequest<AlipayMo
 	private String apiVersion="1.0";
 
 	/** 
-	* JSON 串
+	* json串，<a href="https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7386797.0.0.1l7WMo&treeId=53&articleId=103504&docType=1">详情请见</a>
 	 */
 	private String bizContent;
 
@@ -32,6 +32,8 @@ public class AlipayMobilePublicLabelAddRequest implements AlipayRequest<AlipayMo
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayMobilePublicLabelAddRequest implements AlipayRequest<AlipayMo
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayMobilePublicLabelAddRequest implements AlipayRequest<AlipayMo
 	public Class<AlipayMobilePublicLabelAddResponse> getResponseClass() {
 		return AlipayMobilePublicLabelAddResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

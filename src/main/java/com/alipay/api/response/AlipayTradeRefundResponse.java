@@ -12,11 +12,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.trade.refund response.
  * 
  * @author auto create
- * @since 1.0, 2015-12-04 19:42:36
+ * @since 1.0, 2016-07-05 15:44:41
  */
 public class AlipayTradeRefundResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 4278266581258698278L;
+	private static final long serialVersionUID = 7192833281943456819L;
 
 	/** 
 	 * 用户的登录id
@@ -43,7 +43,7 @@ public class AlipayTradeRefundResponse extends AlipayResponse {
 	private Date gmtRefundPay;
 
 	/** 
-	 * 买家支付宝用户号
+	 * 买家支付宝用户号，该参数已废弃，请不要使用
 	 */
 	@ApiField("open_id")
 	private String openId;
@@ -55,20 +55,20 @@ public class AlipayTradeRefundResponse extends AlipayResponse {
 	private String outTradeNo;
 
 	/** 
-	 * 退款返回的资金明细类型
+	 * 退款使用的资金渠道
 	 */
 	@ApiListField("refund_detail_item_list")
 	@ApiField("trade_fund_bill")
 	private List<TradeFundBill> refundDetailItemList;
 
 	/** 
-	 * 本次发生的退款金额
+	 * 退款总金额
 	 */
 	@ApiField("refund_fee")
 	private String refundFee;
 
 	/** 
-	 * 实际退回给用户的金额
+	 * 本次商户实际退回金额
 	 */
 	@ApiField("send_back_fee")
 	private String sendBackFee;

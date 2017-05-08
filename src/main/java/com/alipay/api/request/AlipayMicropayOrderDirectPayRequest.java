@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMicropayOrderDirectPayResponse;
  * ALIPAY API: alipay.micropay.order.direct.pay request
  * 
  * @author auto create
- * @since 1.0, 2016-01-14 17:44:22
+ * @since 1.0, 2016-06-06 17:50:51
  */
 public class AlipayMicropayOrderDirectPayRequest implements AlipayRequest<AlipayMicropayOrderDirectPayResponse> {
 
@@ -80,6 +80,8 @@ public class AlipayMicropayOrderDirectPayRequest implements AlipayRequest<Alipay
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -87,6 +89,14 @@ public class AlipayMicropayOrderDirectPayRequest implements AlipayRequest<Alipay
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -148,4 +158,18 @@ public class AlipayMicropayOrderDirectPayRequest implements AlipayRequest<Alipay
 	public Class<AlipayMicropayOrderDirectPayResponse> getResponseClass() {
 		return AlipayMicropayOrderDirectPayResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

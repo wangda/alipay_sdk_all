@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayMarketingCdpAdvertiseOperateResponse;
  * ALIPAY API: alipay.marketing.cdp.advertise.operate request
  * 
  * @author auto create
- * @since 1.0, 2016-02-22 11:39:35
+ * @since 1.0, 2016-07-18 16:42:11
  */
 public class AlipayMarketingCdpAdvertiseOperateRequest implements AlipayRequest<AlipayMarketingCdpAdvertiseOperateResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayMarketingCdpAdvertiseOperateRequest implements AlipayRequest<
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayMarketingCdpAdvertiseOperateRequest implements AlipayRequest<
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayMarketingCdpAdvertiseOperateRequest implements AlipayRequest<
 	public Class<AlipayMarketingCdpAdvertiseOperateResponse> getResponseClass() {
 		return AlipayMarketingCdpAdvertiseOperateResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayZmscoreZrankGetResponse;
  * ALIPAY API: alipay.zmscore.zrank.get request
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 19:24:28
+ * @since 1.0, 2016-06-02 14:27:12
  */
 public class AlipayZmscoreZrankGetRequest implements AlipayRequest<AlipayZmscoreZrankGetResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayZmscoreZrankGetRequest implements AlipayRequest<AlipayZmscore
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayZmscoreZrankGetRequest implements AlipayRequest<AlipayZmscore
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayZmscoreZrankGetRequest implements AlipayRequest<AlipayZmscore
 	public Class<AlipayZmscoreZrankGetResponse> getResponseClass() {
 		return AlipayZmscoreZrankGetResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

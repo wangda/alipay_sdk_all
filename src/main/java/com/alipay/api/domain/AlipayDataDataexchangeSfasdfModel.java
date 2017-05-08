@@ -10,11 +10,17 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 1232456374
  *
  * @author auto create
- * @since 1.0, 2016-01-15 21:34:08
+ * @since 1.0, 2016-03-18 20:58:13
  */
 public class AlipayDataDataexchangeSfasdfModel extends AlipayObject {
 
-	private static final long serialVersionUID = 5171596868672399892L;
+	private static final long serialVersionUID = 5158942384388349187L;
+
+	/**
+	 * sdafsdfsaf
+	 */
+	@ApiField("adsfghjf")
+	private AlipayItemVoucherTemplete adsfghjf;
 
 	/**
 	 * ghjffdssfghj
@@ -49,6 +55,13 @@ public class AlipayDataDataexchangeSfasdfModel extends AlipayObject {
 	@ApiListField("wehtegf")
 	@ApiField("string")
 	private List<String> wehtegf;
+
+	public AlipayItemVoucherTemplete getAdsfghjf() {
+		return this.adsfghjf;
+	}
+	public void setAdsfghjf(AlipayItemVoucherTemplete adsfghjf) {
+		this.adsfghjf = adsfghjf;
+	}
 
 	public List<String> getEasadasfd() {
 		return this.easadasfd;

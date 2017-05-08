@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.trust.user.report.get response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-04 10:16:32
+ * @since 1.0, 2016-03-04 11:36:24
  */
 public class AlipayTrustUserReportGetResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 1449231491128967283L;
+	private static final long serialVersionUID = 8359217948661797914L;
 
 	/** 
 	 * 报告内容，格式详见示例代码

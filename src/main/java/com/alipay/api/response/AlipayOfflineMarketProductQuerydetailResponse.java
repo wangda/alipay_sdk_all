@@ -14,33 +14,33 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.market.product.querydetail response.
  * 
  * @author auto create
- * @since 1.0, 2015-12-21 14:31:35
+ * @since 1.0, 2016-07-29 19:52:11
  */
 public class AlipayOfflineMarketProductQuerydetailResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 4423219794363447772L;
+	private static final long serialVersionUID = 6523714515872258592L;
 
 	/** 
-	 * 商品首图
+	 * 商品首图，尺寸比例在65:53范围内且图片大小不超过10k皆可
 	 */
 	@ApiField("cover")
 	private String cover;
 
 	/** 
-	 * 商品描述
+	 * 商品描述，只有单品代金券有商品描述
 	 */
 	@ApiListField("descriptions")
 	@ApiField("alipay_data_item_description")
 	private List<AlipayDataItemDescription> descriptions;
 
 	/** 
-	 * 商品下架时间
+	 * 商品下架时间，不得早于商品生效时间，商品下架
 	 */
 	@ApiField("gmt_end")
 	private Date gmtEnd;
 
 	/** 
-	 * 商品生效时间
+	 * 商品生效时间，到达生效时间后才可在客户端展示出来
 	 */
 	@ApiField("gmt_start")
 	private Date gmtStart;
@@ -52,19 +52,24 @@ public class AlipayOfflineMarketProductQuerydetailResponse extends AlipayRespons
 	private Long inventory;
 
 	/** 
-	 * 是否自动延期，默认true
+	 * 是否自动延期，默认false
 	 */
 	@ApiField("is_auto_expanded")
 	private Boolean isAutoExpanded;
 
 	/** 
-	 * 商品状态
+	 * 该商品当前的状态，共有四个状态：
+INIT（初始化状态）
+EFFECTIVE（上架/售卖中）
+PAUSE（暂停售卖）
+INVALID（下架/失效状态）
+说明： 处于暂停售卖状态的商品还可以变成上架/售卖中状态，但一旦INVALID就相当于删除了该商品，无法再做其他操作
 	 */
 	@ApiField("item_status")
 	private String itemStatus;
 
 	/** 
-	 * 商品类型
+	 * 商品类型，券类型为固定值VOUCHER
 	 */
 	@ApiField("item_type")
 	private String itemType;
@@ -76,26 +81,28 @@ public class AlipayOfflineMarketProductQuerydetailResponse extends AlipayRespons
 	private String picColl;
 
 	/** 
-	 * 商品购买类型 OBTAIN，AUTO_OBTAIN
+	 * 商品购买类型：
+OBTAIN为领取
+AUTO_OBTAIN为自动领取
 	 */
 	@ApiField("purchase_mode")
 	private String purchaseMode;
 
 	/** 
-	 * 销售规则
+	 * 销售规则，如用户一天只能领取一次等
 	 */
 	@ApiField("sales_rule")
 	private AlipayDataItemSalesRule salesRule;
 
 	/** 
-	 * 上架门店id
+	 * 上架门店id列表，即传入一个或多个shop_id，必须是创建商品partnerId下的店铺，目前支持的店铺最大100个，如果超过100个店铺需要报备
 	 */
 	@ApiListField("shop_list")
 	@ApiField("string")
 	private List<String> shopList;
 
 	/** 
-	 * 商品的标题
+	 * 商品名称，请勿超过15个汉字，30个字符
 	 */
 	@ApiField("subject")
 	private String subject;
@@ -107,7 +114,7 @@ public class AlipayOfflineMarketProductQuerydetailResponse extends AlipayRespons
 	private AlipayDataItemVoucherTemplete voucherTemplete;
 
 	/** 
-	 * 商品顺序描述
+	 * 商品顺序权重，必须是整数，不传默认为0，权重数值越大排序越靠前
 	 */
 	@ApiField("weight")
 	private Long weight;

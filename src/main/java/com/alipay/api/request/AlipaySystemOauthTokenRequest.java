@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipaySystemOauthTokenResponse;
  * ALIPAY API: alipay.system.oauth.token request
  * 
  * @author auto create
- * @since 1.0, 2016-01-28 17:50:59
+ * @since 1.0, 2016-07-18 13:35:35
  */
 public class AlipaySystemOauthTokenRequest implements AlipayRequest<AlipaySystemOauthTokenResponse> {
 
@@ -23,12 +23,12 @@ public class AlipaySystemOauthTokenRequest implements AlipayRequest<AlipaySystem
 	private String code;
 
 	/** 
-	* 获取访问令牌的类型，authorization_code表示用授权码换，refresh_token表示用刷新令牌来换。
+	* 值为authorization_code时，代表用code换取；值为refresh_token时，代表用refresh_token换取
 	 */
 	private String grantType;
 
 	/** 
-	* 刷新令牌，上次换取访问令牌时得到。
+	* 刷新令牌，上次换取访问令牌时得到。见出参的refresh_token字段
 	 */
 	private String refreshToken;
 
@@ -56,6 +56,8 @@ public class AlipaySystemOauthTokenRequest implements AlipayRequest<AlipaySystem
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -63,6 +65,14 @@ public class AlipaySystemOauthTokenRequest implements AlipayRequest<AlipaySystem
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -122,4 +132,18 @@ public class AlipaySystemOauthTokenRequest implements AlipayRequest<AlipaySystem
 	public Class<AlipaySystemOauthTokenResponse> getResponseClass() {
 		return AlipaySystemOauthTokenResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

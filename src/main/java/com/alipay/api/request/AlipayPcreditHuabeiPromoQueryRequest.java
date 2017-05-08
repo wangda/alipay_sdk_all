@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayPcreditHuabeiPromoQueryResponse;
  * ALIPAY API: alipay.pcredit.huabei.promo.query request
  * 
  * @author auto create
- * @since 1.0, 2015-09-14 19:50:58
+ * @since 1.0, 2016-03-03 17:48:05
  */
 public class AlipayPcreditHuabeiPromoQueryRequest implements AlipayRequest<AlipayPcreditHuabeiPromoQueryResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayPcreditHuabeiPromoQueryRequest implements AlipayRequest<Alipa
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayPcreditHuabeiPromoQueryRequest implements AlipayRequest<Alipa
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayPcreditHuabeiPromoQueryRequest implements AlipayRequest<Alipa
 	public Class<AlipayPcreditHuabeiPromoQueryResponse> getResponseClass() {
 		return AlipayPcreditHuabeiPromoQueryResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

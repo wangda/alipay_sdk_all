@@ -1,5 +1,6 @@
 package com.alipay.api.request;
 
+import com.alipay.api.domain.AlipayPassTemplateUpdateModel;
 import java.util.Map;
 
 import com.alipay.api.AlipayRequest;
@@ -10,7 +11,7 @@ import com.alipay.api.response.AlipayPassTemplateUpdateResponse;
  * ALIPAY API: alipay.pass.template.update request
  * 
  * @author auto create
- * @since 1.0, 2015-07-23 11:37:10
+ * @since 1.0, 2016-07-29 00:37:05
  */
 public class AlipayPassTemplateUpdateRequest implements AlipayRequest<AlipayPassTemplateUpdateResponse> {
 
@@ -18,7 +19,7 @@ public class AlipayPassTemplateUpdateRequest implements AlipayRequest<AlipayPass
 	private String apiVersion="1.0";
 
 	/** 
-	* 控制卡券展示的模板内容信息，遵循JSON规范
+	* 支付宝pass更新模版接口
 	 */
 	private String bizContent;
 
@@ -32,6 +33,8 @@ public class AlipayPassTemplateUpdateRequest implements AlipayRequest<AlipayPass
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +42,14 @@ public class AlipayPassTemplateUpdateRequest implements AlipayRequest<AlipayPass
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +107,18 @@ public class AlipayPassTemplateUpdateRequest implements AlipayRequest<AlipayPass
 	public Class<AlipayPassTemplateUpdateResponse> getResponseClass() {
 		return AlipayPassTemplateUpdateResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

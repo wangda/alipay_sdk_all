@@ -9,11 +9,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 支用数据
  *
  * @author auto create
- * @since 1.0, 2015-04-02 10:34:34
+ * @since 1.0, 2016-03-29 11:33:03
  */
 public class DrawndnVo extends AlipayObject {
 
-	private static final long serialVersionUID = 7719261969251234448L;
+	private static final long serialVersionUID = 5342159919445197622L;
 
 	/**
 	 * 实收利息，单位为元，小数点保留2位

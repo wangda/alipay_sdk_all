@@ -9,11 +9,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 支用还款计划（包括虚拟还款和真实还款）
  *
  * @author auto create
- * @since 1.0, 2015-04-02 10:34:58
+ * @since 1.0, 2016-03-29 11:34:02
  */
 public class PaymentSchedule extends AlipayObject {
 
-	private static final long serialVersionUID = 2488973285581629885L;
+	private static final long serialVersionUID = 8387966436842467397L;
 
 	/**
 	 * 还款日

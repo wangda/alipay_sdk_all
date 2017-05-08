@@ -8,44 +8,55 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.market.shop.create response.
  * 
  * @author auto create
- * @since 1.0, 2016-03-01 23:39:01
+ * @since 1.0, 2016-07-29 18:44:51
  */
 public class AlipayOfflineMarketShopCreateResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 1873572949152591517L;
+	private static final long serialVersionUID = 3474342384279771866L;
 
 	/** 
-	 * ISV每次请求都会在支付宝保存一条流水，apply_id为流水Id,此字段留作后续功能扩展使用
+	 * 开店请求受理成功后返回的支付宝流水ID，根据此ID调用接口
+alipay.offline.market.applyorder.batchquery，能够获取当前开店请求审核状态、驳回原因等信息。
 	 */
 	@ApiField("apply_id")
 	private String applyId;
 
 	/** 
-	 * 门店审核状态描述，如果审核驳回则有相关的驳回理由
+	 * 废弃字段。
 	 */
 	@ApiField("audit_desc")
 	private String auditDesc;
 
 	/** 
-	 * 门店审核状态，对于系统商而言，只有三个状态，AUDITING：审核中，AUDIT_FAILED：审核驳回，AUDIT_SUCCESS：审核通过。第一次审核通过会触发门店上架。
+	 * 同步请求如果支付宝受理成功，将返回AUDITING状态。
 	 */
 	@ApiField("audit_status")
 	private String auditStatus;
 
 	/** 
-	 * 门店是否上架，T表示上架,F表示未上架，第一次门店审核通过后会触发上架
+	 * 废弃字段，T表示上架,F表示未上架。
 	 */
 	@ApiField("is_online")
 	private String isOnline;
 
 	/** 
-	 * 门店是否在客户端显示，T表示显示，F表示隐藏
+	 * 废弃字段，T表示显示，F表示隐藏。
 	 */
 	@ApiField("is_show")
 	private String isShow;
 
 	/** 
-	 * 支付宝门店ID，后续的增删改查接口都使用该ID作为主键
+	 * （支付宝内部参数）ISV开店暂不会返回，开店请求结果码：
+WAIT_MERCHANT_CONFIRM：等待商户确认
+WAIT_CERTIFY：等待认证
+LICENSE_AUDITING：一证多开审核中
+RISK_AUDITING：风控审核中
+	 */
+	@ApiField("result_code")
+	private String resultCode;
+
+	/** 
+	 * 废弃字段，支付宝门店ID。
 	 */
 	@ApiField("shop_id")
 	private String shopId;
@@ -83,6 +94,13 @@ public class AlipayOfflineMarketShopCreateResponse extends AlipayResponse {
 	}
 	public String getIsShow( ) {
 		return this.isShow;
+	}
+
+	public void setResultCode(String resultCode) {
+		this.resultCode = resultCode;
+	}
+	public String getResultCode( ) {
+		return this.resultCode;
 	}
 
 	public void setShopId(String shopId) {

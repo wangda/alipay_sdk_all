@@ -10,11 +10,11 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 商品描述模型(数据)
  *
  * @author auto create
- * @since 1.0, 2015-11-16 18:59:43
+ * @since 1.0, 2016-05-26 13:26:04
  */
 public class AlipayDataItemDescription extends AlipayObject {
 
-	private static final long serialVersionUID = 5448455495367862969L;
+	private static final long serialVersionUID = 5692664243429374134L;
 
 	/**
 	 * 标题下的描述列表
@@ -31,13 +31,13 @@ public class AlipayDataItemDescription extends AlipayObject {
 	private List<String> images;
 
 	/**
-	 * 描述标题
+	 * 描述标题，不得超过15个中文字符
 	 */
 	@ApiField("title")
 	private String title;
 
 	/**
-	 * 描述url(https开头)
+	 * 套餐使用说明链接，必须是https的地址链接
 	 */
 	@ApiField("url")
 	private String url;

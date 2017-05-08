@@ -13,7 +13,7 @@ import com.alipay.api.internal.mapping.ApiField;
  */
 public class BankPayApplyResult extends AlipayObject {
 
-	private static final long serialVersionUID = 3417683947495286365L;
+	private static final long serialVersionUID = 8677985945648755347L;
 
 	/**
 	 * 支付宝账户类型对应的id。如email、手机等

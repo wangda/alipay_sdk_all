@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 外部应用根据用户当前地理位置查询附近商家信息
  *
  * @author auto create
- * @since 1.0, 2015-12-01 13:49:03
+ * @since 1.0, 2016-07-12 19:37:01
  */
 public class AlipayMarketingCdpRecommendQueryModel extends AlipayObject {
 
-	private static final long serialVersionUID = 6233429576214424533L;
+	private static final long serialVersionUID = 5148852193691877897L;
 
 	/**
 	 * 广告标识码

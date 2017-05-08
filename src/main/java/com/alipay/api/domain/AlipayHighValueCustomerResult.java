@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 活跃高价值用户返回
  *
  * @author auto create
- * @since 1.0, 2016-01-27 19:27:13
+ * @since 1.0, 2016-06-02 14:27:08
  */
 public class AlipayHighValueCustomerResult extends AlipayObject {
 
-	private static final long serialVersionUID = 4881398555226954478L;
+	private static final long serialVersionUID = 8893766836424724953L;
 
 	/**
 	 * Z0-Z7

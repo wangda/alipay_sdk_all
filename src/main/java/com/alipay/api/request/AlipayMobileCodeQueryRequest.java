@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobileCodeQueryResponse;
  * ALIPAY API: alipay.mobile.code.query request
  * 
  * @author auto create
- * @since 1.0, 2015-10-22 19:26:32
+ * @since 1.0, 2016-07-14 14:38:02
  */
 public class AlipayMobileCodeQueryRequest implements AlipayRequest<AlipayMobileCodeQueryResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayMobileCodeQueryRequest implements AlipayRequest<AlipayMobileC
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayMobileCodeQueryRequest implements AlipayRequest<AlipayMobileC
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayMobileCodeQueryRequest implements AlipayRequest<AlipayMobileC
 	public Class<AlipayMobileCodeQueryResponse> getResponseClass() {
 		return AlipayMobileCodeQueryResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

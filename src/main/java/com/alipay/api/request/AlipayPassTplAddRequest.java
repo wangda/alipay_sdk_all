@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayPassTplAddResponse;
  * ALIPAY API: alipay.pass.tpl.add request
  * 
  * @author auto create
- * @since 1.0, 2014-07-23 17:28:53
+ * @since 1.0, 2016-07-01 15:35:14
  */
 public class AlipayPassTplAddRequest implements AlipayRequest<AlipayPassTplAddResponse> {
 
@@ -45,6 +45,8 @@ public class AlipayPassTplAddRequest implements AlipayRequest<AlipayPassTplAddRe
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -52,6 +54,14 @@ public class AlipayPassTplAddRequest implements AlipayRequest<AlipayPassTplAddRe
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -110,4 +120,18 @@ public class AlipayPassTplAddRequest implements AlipayRequest<AlipayPassTplAddRe
 	public Class<AlipayPassTplAddResponse> getResponseClass() {
 		return AlipayPassTplAddResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

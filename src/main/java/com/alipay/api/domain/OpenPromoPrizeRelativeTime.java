@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 开放活动－奖品适用门店
  *
  * @author auto create
- * @since 1.0, 2016-01-13 10:09:24
+ * @since 1.0, 2016-03-14 15:03:10
  */
 public class OpenPromoPrizeRelativeTime extends AlipayObject {
 
-	private static final long serialVersionUID = 6715956359831291984L;
+	private static final long serialVersionUID = 4286445836761511736L;
 
 	/**
 	 * 时间维度,

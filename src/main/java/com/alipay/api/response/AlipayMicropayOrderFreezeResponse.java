@@ -9,11 +9,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.micropay.order.freeze response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-14 17:46:14
+ * @since 1.0, 2016-06-06 17:49:00
  */
 public class AlipayMicropayOrderFreezeResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 7715279583367968215L;
+	private static final long serialVersionUID = 1812648472933828977L;
 
 	/** 
 	 * 冻结订单详情

@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayTrustUserRiskSummaryGetResponse;
  * ALIPAY API: alipay.trust.user.risk.summary.get request
  * 
  * @author auto create
- * @since 1.0, 2016-01-04 10:16:23
+ * @since 1.0, 2016-03-04 11:36:29
  */
 public class AlipayTrustUserRiskSummaryGetRequest implements AlipayRequest<AlipayTrustUserRiskSummaryGetResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayTrustUserRiskSummaryGetRequest implements AlipayRequest<Alipa
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayTrustUserRiskSummaryGetRequest implements AlipayRequest<Alipa
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayTrustUserRiskSummaryGetRequest implements AlipayRequest<Alipa
 	public Class<AlipayTrustUserRiskSummaryGetResponse> getResponseClass() {
 		return AlipayTrustUserRiskSummaryGetResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

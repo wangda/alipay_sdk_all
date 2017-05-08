@@ -28,7 +28,23 @@ public interface AlipayParser<T extends AlipayResponse> {
      * @return
      * @throws AlipayApiException
      */
-    public SignItem getSignItem(AlipayRequest<?> request, AlipayResponse response)
-                                                                                  throws AlipayApiException;
+    public SignItem getSignItem(AlipayRequest<?> request, String responseBody)
+                                                                              throws AlipayApiException;
+
+    /**
+     *  获取实际串：如果是加密内容则返回内容已经是解密后的实际内容了
+     * 
+     * @param request
+     * @param body
+     * @param format
+     * @param encryptType
+     * @param encryptKey
+     * @param charset
+     * @return
+     * @throws AlipayApiException
+     */
+    public String encryptSourceData(AlipayRequest<?> request, String body, String format,
+                                    String encryptType, String encryptKey, String charset)
+                                                                                          throws AlipayApiException;
 
 }

@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.commerce.cityfacilitator.voucher.confirm response.
  * 
  * @author auto create
- * @since 1.0, 2015-12-18 16:28:15
+ * @since 1.0, 2016-07-07 13:14:52
  */
 public class AlipayCommerceCityfacilitatorVoucherConfirmResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 2458465624491176499L;
+	private static final long serialVersionUID = 1427849291559323434L;
 
 	/** 
 	 * 订单金额，元为单位
@@ -61,6 +61,12 @@ public class AlipayCommerceCityfacilitatorVoucherConfirmResponse extends AlipayR
 	 */
 	@ApiField("ticket_price")
 	private String ticketPrice;
+
+	/** 
+	 * 描述票种类
+	 */
+	@ApiField("ticket_type")
+	private String ticketType;
 
 	/** 
 	 * 支付宝交易号
@@ -122,6 +128,13 @@ public class AlipayCommerceCityfacilitatorVoucherConfirmResponse extends AlipayR
 	}
 	public String getTicketPrice( ) {
 		return this.ticketPrice;
+	}
+
+	public void setTicketType(String ticketType) {
+		this.ticketType = ticketType;
+	}
+	public String getTicketType( ) {
+		return this.ticketType;
 	}
 
 	public void setTradeNo(String tradeNo) {

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.alipay</groupId>
 	<artifactId>alipay-sdk-all</artifactId>
-	<version>1.0.1-RELEASE</version>
+	<version>1.1.0-RELEASE</version>
 	<packaging>jar</packaging>
 	<name>alipay-sdk-all</name>
 	<url>http://www.trawe.cn</url>

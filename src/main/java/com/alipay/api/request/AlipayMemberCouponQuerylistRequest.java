@@ -96,6 +96,8 @@ OPENID：用户支付宝账户在某商户下的唯一ID
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -103,6 +105,14 @@ OPENID：用户支付宝账户在某商户下的唯一ID
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -164,4 +174,18 @@ OPENID：用户支付宝账户在某商户下的唯一ID
 	public Class<AlipayMemberCouponQuerylistResponse> getResponseClass() {
 		return AlipayMemberCouponQuerylistResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

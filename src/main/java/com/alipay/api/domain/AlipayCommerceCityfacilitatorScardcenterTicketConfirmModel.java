@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 钱包中地铁票购票，获得核销码，线下地铁自助购票机上凭核销码取票,购票确认
  *
  * @author auto create
- * @since 1.0, 2015-12-18 16:28:15
+ * @since 1.0, 2016-07-07 13:14:52
  */
 public class AlipayCommerceCityfacilitatorScardcenterTicketConfirmModel extends AlipayObject {
 
-	private static final long serialVersionUID = 2597199664563884135L;
+	private static final long serialVersionUID = 1545418911327937139L;
 
 	/**
 	 * 金额，元为单位
@@ -68,6 +68,12 @@ public class AlipayCommerceCityfacilitatorScardcenterTicketConfirmModel extends 
 	private String quantity;
 
 	/**
+	 * 请求方标识
+	 */
+	@ApiField("seller_id")
+	private String sellerId;
+
+	/**
 	 * 起点站编号
 	 */
 	@ApiField("start_station")
@@ -84,6 +90,12 @@ public class AlipayCommerceCityfacilitatorScardcenterTicketConfirmModel extends 
 	 */
 	@ApiField("ticket_price")
 	private String ticketPrice;
+
+	/**
+	 * 票类型
+	 */
+	@ApiField("ticket_type")
+	private String ticketType;
 
 	/**
 	 * 支付宝交易号
@@ -154,6 +166,13 @@ public class AlipayCommerceCityfacilitatorScardcenterTicketConfirmModel extends 
 		this.quantity = quantity;
 	}
 
+	public String getSellerId() {
+		return this.sellerId;
+	}
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
+	}
+
 	public String getStartStation() {
 		return this.startStation;
 	}
@@ -173,6 +192,13 @@ public class AlipayCommerceCityfacilitatorScardcenterTicketConfirmModel extends 
 	}
 	public void setTicketPrice(String ticketPrice) {
 		this.ticketPrice = ticketPrice;
+	}
+
+	public String getTicketType() {
+		return this.ticketType;
+	}
+	public void setTicketType(String ticketType) {
+		this.ticketType = ticketType;
 	}
 
 	public String getTradeNo() {

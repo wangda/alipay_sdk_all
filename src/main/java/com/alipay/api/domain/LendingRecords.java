@@ -9,11 +9,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 支用放款流水
  *
  * @author auto create
- * @since 1.0, 2015-04-02 10:34:28
+ * @since 1.0, 2016-03-29 11:33:16
  */
 public class LendingRecords extends AlipayObject {
 
-	private static final long serialVersionUID = 3389399521344974572L;
+	private static final long serialVersionUID = 7298611954417482957L;
 
 	/**
 	 * 放款时间，精确到天

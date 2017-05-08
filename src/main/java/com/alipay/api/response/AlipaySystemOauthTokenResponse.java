@@ -8,20 +8,20 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.system.oauth.token response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-28 17:50:59
+ * @since 1.0, 2016-07-18 13:35:35
  */
 public class AlipaySystemOauthTokenResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 7848438934269512164L;
+	private static final long serialVersionUID = 6694198878961154332L;
 
 	/** 
-	 * 访问令牌
+	 * 访问令牌。通过该令牌调用需要授权类接口
 	 */
 	@ApiField("access_token")
 	private String accessToken;
 
 	/** 
-	 * 支付宝用户的id，默认不返回
+	 * 已废弃，请勿使用
 	 */
 	@ApiField("alipay_user_id")
 	private String alipayUserId;
@@ -39,13 +39,13 @@ public class AlipaySystemOauthTokenResponse extends AlipayResponse {
 	private String reExpiresIn;
 
 	/** 
-	 * 刷新令牌
+	 * 刷新令牌。通过该令牌可以刷新access_token
 	 */
 	@ApiField("refresh_token")
 	private String refreshToken;
 
 	/** 
-	 * 对应alipayUserId, 标准userId格式
+	 * 支付宝用户的唯一userId
 	 */
 	@ApiField("user_id")
 	private String userId;

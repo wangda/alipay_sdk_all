@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayZdataassetsFcdatalabZdatamergetaskResponse;
  * ALIPAY API: alipay.zdataassets.fcdatalab.zdatamergetask request
  * 
  * @author auto create
- * @since 1.0, 2015-11-27 13:49:36
+ * @since 1.0, 2016-03-03 17:49:28
  */
 public class AlipayZdataassetsFcdatalabZdatamergetaskRequest implements AlipayRequest<AlipayZdataassetsFcdatalabZdatamergetaskResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayZdataassetsFcdatalabZdatamergetaskRequest implements AlipayRe
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayZdataassetsFcdatalabZdatamergetaskRequest implements AlipayRe
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayZdataassetsFcdatalabZdatamergetaskRequest implements AlipayRe
 	public Class<AlipayZdataassetsFcdatalabZdatamergetaskResponse> getResponseClass() {
 		return AlipayZdataassetsFcdatalabZdatamergetaskResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

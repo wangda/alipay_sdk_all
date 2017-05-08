@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobileBksigntokenVerifyResponse;
  * ALIPAY API: alipay.mobile.bksigntoken.verify request
  * 
  * @author auto create
- * @since 1.0, 2015-06-18 15:23:55
+ * @since 1.0, 2016-06-21 16:14:51
  */
 public class AlipayMobileBksigntokenVerifyRequest implements AlipayRequest<AlipayMobileBksigntokenVerifyResponse> {
 
@@ -56,6 +56,8 @@ public class AlipayMobileBksigntokenVerifyRequest implements AlipayRequest<Alipa
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -63,6 +65,14 @@ public class AlipayMobileBksigntokenVerifyRequest implements AlipayRequest<Alipa
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -122,4 +132,18 @@ public class AlipayMobileBksigntokenVerifyRequest implements AlipayRequest<Alipa
 	public Class<AlipayMobileBksigntokenVerifyResponse> getResponseClass() {
 		return AlipayMobileBksigntokenVerifyResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayUserTradeSearchResponse;
  * ALIPAY API: alipay.user.trade.search request
  * 
  * @author auto create
- * @since 1.0, 2014-09-30 12:07:20
+ * @since 1.0, 2016-07-13 16:55:41
  */
 public class AlipayUserTradeSearchRequest implements AlipayRequest<AlipayUserTradeSearchResponse> {
 
@@ -38,12 +38,12 @@ public class AlipayUserTradeSearchRequest implements AlipayRequest<AlipayUserTra
 	private String orderFrom;
 
 	/** 
-	* 订单状态，为空查询所有状态订单
+	* 订单状态，为空查询所有状态订单。例如：等待买家付款（WAIT_BUYER_PAY），等待卖家发货（WAIT_SELLER_SEND_GOODS），等待买家确认收货（WAIT_BUYER_CONFIRM_GOODS），交易完成（TRADE_FINISHED），交易关闭（TRADE_CLOSED），交易成功（TRADE_SUCCESS）
 	 */
 	private String orderStatus;
 
 	/** 
-	* 订单类型，为空查询所有类型订单。
+	* 订单类型，为空查询所有类型订单。例如：交易（TRADE）,CAE代扣（CAE）,代付（PEERPAY）,转账到卡（TRANSFER）
 	 */
 	private String orderType;
 
@@ -128,6 +128,8 @@ public class AlipayUserTradeSearchRequest implements AlipayRequest<AlipayUserTra
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -135,6 +137,14 @@ public class AlipayUserTradeSearchRequest implements AlipayRequest<AlipayUserTra
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -200,4 +210,18 @@ public class AlipayUserTradeSearchRequest implements AlipayRequest<AlipayUserTra
 	public Class<AlipayUserTradeSearchResponse> getResponseClass() {
 		return AlipayUserTradeSearchResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

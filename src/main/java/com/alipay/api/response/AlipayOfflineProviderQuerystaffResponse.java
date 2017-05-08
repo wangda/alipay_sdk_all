@@ -11,11 +11,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.provider.querystaff response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 19:32:25
+ * @since 1.0, 2016-05-16 16:12:59
  */
 public class AlipayOfflineProviderQuerystaffResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 2328838538964862192L;
+	private static final long serialVersionUID = 3133751369699829967L;
 
 	/** 
 	 * 当前分页数

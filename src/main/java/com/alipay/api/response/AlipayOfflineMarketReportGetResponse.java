@@ -9,11 +9,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.market.report.get response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 11:30:49
+ * @since 1.0, 2016-05-16 16:13:16
  */
 public class AlipayOfflineMarketReportGetResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 4323617283221693476L;
+	private static final long serialVersionUID = 2559637519357379347L;
 
 	/** 
 	 * 街道

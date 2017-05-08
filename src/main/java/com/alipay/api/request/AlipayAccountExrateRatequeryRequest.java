@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayAccountExrateRatequeryResponse;
  * ALIPAY API: alipay.account.exrate.ratequery request
  * 
  * @author auto create
- * @since 1.0, 2015-12-08 15:25:12
+ * @since 1.0, 2016-05-23 14:55:56
  */
 public class AlipayAccountExrateRatequeryRequest implements AlipayRequest<AlipayAccountExrateRatequeryResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayAccountExrateRatequeryRequest implements AlipayRequest<Alipay
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayAccountExrateRatequeryRequest implements AlipayRequest<Alipay
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayAccountExrateRatequeryRequest implements AlipayRequest<Alipay
 	public Class<AlipayAccountExrateRatequeryResponse> getResponseClass() {
 		return AlipayAccountExrateRatequeryResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

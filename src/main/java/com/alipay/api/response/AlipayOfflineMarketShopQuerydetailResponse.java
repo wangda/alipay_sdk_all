@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.market.shop.querydetail response.
  * 
  * @author auto create
- * @since 1.0, 2016-03-01 17:38:37
+ * @since 1.0, 2016-07-08 11:33:28
  */
 public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 8647136393363712718L;
+	private static final long serialVersionUID = 8774762763271494219L;
 
 	/** 
 	 * 门店详细地址，注：不含省市区
@@ -111,10 +111,28 @@ public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 	private String contactNumber;
 
 	/** 
+	 * 门店创建来源；如：开放平台、支付宝客户端、口碑商家app、商家自主开店、服务商开店、全民开店-支付宝客户端、全民开店-商户app、其它
+	 */
+	@ApiField("create_channel")
+	private String createChannel;
+
+	/** 
 	 * 区县编码，国标码，详见国家统计局数据
 	 */
 	@ApiField("district_code")
 	private String districtCode;
+
+	/** 
+	 * 门店创建时间
+	 */
+	@ApiField("gmt_shop_create")
+	private String gmtShopCreate;
+
+	/** 
+	 * 门店修改时间
+	 */
+	@ApiField("gmt_shop_modified")
+	private String gmtShopModified;
 
 	/** 
 	 * 店铺使用的机具编号，多个以英文逗号分隔
@@ -219,6 +237,12 @@ public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 	private String operateNotifyUrl;
 
 	/** 
+	 * 其它资质证明图片集；支持多张，逗号分隔
+	 */
+	@ApiField("other_auth_images")
+	private String otherAuthImages;
+
+	/** 
 	 * 门店是否支持停车，T表示支持，F表示不支持，不传在客户端不作展示
 	 */
 	@ApiField("parking")
@@ -229,6 +253,12 @@ public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 	 */
 	@ApiField("partner_id")
 	private String partnerId;
+
+	/** 
+	 * 默认付款类型；如：付款码、扫码付、声波支付、在线买单、其它
+	 */
+	@ApiField("pay_type")
+	private String payType;
 
 	/** 
 	 * 门店收款账户，门店收款账户只能被查询，不能通过接口修改。如果为空，则表示门店收款账户为商户签约账户
@@ -265,6 +295,12 @@ public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 	 */
 	@ApiField("qr_code")
 	private String qrCode;
+
+	/** 
+	 * 门店标签；JSON格式。包括：keyMerchant-是否重点商户（T/F）；isHallMeal-堂食（T/F）；注：若标签 key 不存在，则门店无对应的标签
+	 */
+	@ApiField("shop_tags")
+	private String shopTags;
 
 	/** 
 	 * 外部门店编号；最长54位字符，该编号将作为收单接口的入参， 请开发者自行确保其唯一性
@@ -396,11 +432,32 @@ public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 		return this.contactNumber;
 	}
 
+	public void setCreateChannel(String createChannel) {
+		this.createChannel = createChannel;
+	}
+	public String getCreateChannel( ) {
+		return this.createChannel;
+	}
+
 	public void setDistrictCode(String districtCode) {
 		this.districtCode = districtCode;
 	}
 	public String getDistrictCode( ) {
 		return this.districtCode;
+	}
+
+	public void setGmtShopCreate(String gmtShopCreate) {
+		this.gmtShopCreate = gmtShopCreate;
+	}
+	public String getGmtShopCreate( ) {
+		return this.gmtShopCreate;
+	}
+
+	public void setGmtShopModified(String gmtShopModified) {
+		this.gmtShopModified = gmtShopModified;
+	}
+	public String getGmtShopModified( ) {
+		return this.gmtShopModified;
 	}
 
 	public void setImplementId(String implementId) {
@@ -522,6 +579,13 @@ public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 		return this.operateNotifyUrl;
 	}
 
+	public void setOtherAuthImages(String otherAuthImages) {
+		this.otherAuthImages = otherAuthImages;
+	}
+	public String getOtherAuthImages( ) {
+		return this.otherAuthImages;
+	}
+
 	public void setParking(String parking) {
 		this.parking = parking;
 	}
@@ -534,6 +598,13 @@ public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 	}
 	public String getPartnerId( ) {
 		return this.partnerId;
+	}
+
+	public void setPayType(String payType) {
+		this.payType = payType;
+	}
+	public String getPayType( ) {
+		return this.payType;
 	}
 
 	public void setPaymentAccount(String paymentAccount) {
@@ -576,6 +647,13 @@ public class AlipayOfflineMarketShopQuerydetailResponse extends AlipayResponse {
 	}
 	public String getQrCode( ) {
 		return this.qrCode;
+	}
+
+	public void setShopTags(String shopTags) {
+		this.shopTags = shopTags;
+	}
+	public String getShopTags( ) {
+		return this.shopTags;
 	}
 
 	public void setStoreId(String storeId) {

@@ -11,7 +11,7 @@ import com.alipay.api.response.AlipayMarketingCampaignActivityOfflineTriggerResp
  * ALIPAY API: alipay.marketing.campaign.activity.offline.trigger request
  * 
  * @author auto create
- * @since 1.0, 2015-11-04 16:43:04
+ * @since 1.0, 2016-05-23 14:35:31
  */
 public class AlipayMarketingCampaignActivityOfflineTriggerRequest implements AlipayRequest<AlipayMarketingCampaignActivityOfflineTriggerResponse> {
 
@@ -33,6 +33,8 @@ public class AlipayMarketingCampaignActivityOfflineTriggerRequest implements Ali
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -40,6 +42,14 @@ public class AlipayMarketingCampaignActivityOfflineTriggerRequest implements Ali
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -97,4 +107,18 @@ public class AlipayMarketingCampaignActivityOfflineTriggerRequest implements Ali
 	public Class<AlipayMarketingCampaignActivityOfflineTriggerResponse> getResponseClass() {
 		return AlipayMarketingCampaignActivityOfflineTriggerResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

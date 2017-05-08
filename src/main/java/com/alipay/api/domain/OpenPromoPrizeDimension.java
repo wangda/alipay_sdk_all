@@ -10,11 +10,11 @@ import com.alipay.api.internal.mapping.ApiListField;
  * 周期性使用时段规则
  *
  * @author auto create
- * @since 1.0, 2016-01-13 10:09:24
+ * @since 1.0, 2016-03-14 15:03:10
  */
 public class OpenPromoPrizeDimension extends AlipayObject {
 
-	private static final long serialVersionUID = 5549979119632544972L;
+	private static final long serialVersionUID = 8546136349952854176L;
 
 	/**
 	 * 时间维度,

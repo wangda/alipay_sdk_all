@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.zdataassets.easyservice response.
  * 
  * @author auto create
- * @since 1.0, 2015-11-27 13:49:24
+ * @since 1.0, 2016-03-03 17:49:09
  */
 public class AlipayZdataassetsEasyserviceResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 3357324332315769975L;
+	private static final long serialVersionUID = 2248486942131777849L;
 
 	/** 
 	 * 返回结果

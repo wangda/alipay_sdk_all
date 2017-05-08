@@ -1,5 +1,6 @@
 package com.alipay.api.request;
 
+import com.alipay.api.domain.AlipayPassInstanceAddModel;
 import java.util.Map;
 
 import com.alipay.api.AlipayRequest;
@@ -10,7 +11,7 @@ import com.alipay.api.response.AlipayPassInstanceAddResponse;
  * ALIPAY API: alipay.pass.instance.add request
  * 
  * @author auto create
- * @since 1.0, 2015-07-23 11:37:24
+ * @since 1.0, 2016-07-29 00:39:41
  */
 public class AlipayPassInstanceAddRequest implements AlipayRequest<AlipayPassInstanceAddResponse> {
 
@@ -18,7 +19,7 @@ public class AlipayPassInstanceAddRequest implements AlipayRequest<AlipayPassIns
 	private String apiVersion="1.0";
 
 	/** 
-	* 券实例的参数信息和用户相关信息
+	* 支付宝pass新建卡券实例接口
 	 */
 	private String bizContent;
 
@@ -32,6 +33,8 @@ public class AlipayPassInstanceAddRequest implements AlipayRequest<AlipayPassIns
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +42,14 @@ public class AlipayPassInstanceAddRequest implements AlipayRequest<AlipayPassIns
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +107,18 @@ public class AlipayPassInstanceAddRequest implements AlipayRequest<AlipayPassIns
 	public Class<AlipayPassInstanceAddResponse> getResponseClass() {
 		return AlipayPassInstanceAddResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

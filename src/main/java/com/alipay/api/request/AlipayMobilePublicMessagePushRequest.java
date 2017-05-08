@@ -10,7 +10,7 @@ import com.alipay.api.response.AlipayMobilePublicMessagePushResponse;
  * ALIPAY API: alipay.mobile.public.message.push request
  * 
  * @author auto create
- * @since 1.0, 2016-01-06 22:48:11
+ * @since 1.0, 2016-03-31 21:05:52
  */
 public class AlipayMobilePublicMessagePushRequest implements AlipayRequest<AlipayMobilePublicMessagePushResponse> {
 
@@ -32,6 +32,8 @@ public class AlipayMobilePublicMessagePushRequest implements AlipayRequest<Alipa
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +41,14 @@ public class AlipayMobilePublicMessagePushRequest implements AlipayRequest<Alipa
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +106,18 @@ public class AlipayMobilePublicMessagePushRequest implements AlipayRequest<Alipa
 	public Class<AlipayMobilePublicMessagePushResponse> getResponseClass() {
 		return AlipayMobilePublicMessagePushResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

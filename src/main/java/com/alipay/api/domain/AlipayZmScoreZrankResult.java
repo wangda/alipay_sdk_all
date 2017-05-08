@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 芝麻分分段
  *
  * @author auto create
- * @since 1.0, 2016-01-27 19:24:28
+ * @since 1.0, 2016-06-02 14:27:12
  */
 public class AlipayZmScoreZrankResult extends AlipayObject {
 
-	private static final long serialVersionUID = 3146313311673499968L;
+	private static final long serialVersionUID = 2664792238356669954L;
 
 	/**
 	 * 芝麻分分段 Z0-Z7

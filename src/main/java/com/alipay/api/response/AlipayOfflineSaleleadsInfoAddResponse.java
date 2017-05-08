@@ -8,11 +8,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.saleleads.info.add response.
  * 
  * @author auto create
- * @since 1.0, 2016-01-27 19:30:47
+ * @since 1.0, 2016-05-16 16:13:33
  */
 public class AlipayOfflineSaleleadsInfoAddResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 1533536683862791596L;
+	private static final long serialVersionUID = 6516217954477252479L;
 
 	/** 
 	 * 添加leads成功后返回

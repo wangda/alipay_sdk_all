@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 通过此接口，商户可以出传入item_id与上下架标识，对商户创建的商品进行上架或下架处理
  *
  * @author auto create
- * @since 1.0, 2016-02-29 15:30:58
+ * @since 1.0, 2016-04-11 19:36:47
  */
 public class AlipayOfflineMarketItemListingModel extends AlipayObject {
 
-	private static final long serialVersionUID = 1845737765396645513L;
+	private static final long serialVersionUID = 3444215746687723441L;
 
 	/**
 	 * 审核规则。支付宝内部使用，外部商户不需填写此字段。

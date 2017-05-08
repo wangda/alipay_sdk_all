@@ -1,5 +1,6 @@
 package com.alipay.api.request;
 
+import com.alipay.api.domain.AlipayTradeRefundModel;
 import java.util.Map;
 
 import com.alipay.api.AlipayRequest;
@@ -10,7 +11,7 @@ import com.alipay.api.response.AlipayTradeRefundResponse;
  * ALIPAY API: alipay.trade.refund request
  * 
  * @author auto create
- * @since 1.0, 2015-12-04 19:42:36
+ * @since 1.0, 2016-07-05 15:44:41
  */
 public class AlipayTradeRefundRequest implements AlipayRequest<AlipayTradeRefundResponse> {
 
@@ -18,7 +19,7 @@ public class AlipayTradeRefundRequest implements AlipayRequest<AlipayTradeRefund
 	private String apiVersion="1.0";
 
 	/** 
-	* 业务请求接口的参数体，JSON格式，具体包含的内容参见各个接口的请求参数
+	* 统一收单交易退款接口
 	 */
 	private String bizContent;
 
@@ -32,6 +33,8 @@ public class AlipayTradeRefundRequest implements AlipayRequest<AlipayTradeRefund
 	private String terminalInfo;	
 	private String prodCode;
 	private String notifyUrl;
+	private String returnUrl;
+	private boolean needEncrypt=false;
 
 	public String getNotifyUrl() {
 		return this.notifyUrl;
@@ -39,6 +42,14 @@ public class AlipayTradeRefundRequest implements AlipayRequest<AlipayTradeRefund
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return this.returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public String getApiVersion() {
@@ -96,4 +107,18 @@ public class AlipayTradeRefundRequest implements AlipayRequest<AlipayTradeRefund
 	public Class<AlipayTradeRefundResponse> getResponseClass() {
 		return AlipayTradeRefundResponse.class;
 	}
+	
+
+    public boolean isNeedEncrypt() {
+    
+      return this.needEncrypt;
+    }
+
+
+    public void setNeedEncrypt(boolean needEncrypt) {
+    
+         this.needEncrypt=needEncrypt;
+    }
+	
+	
 }

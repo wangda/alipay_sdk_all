@@ -7,11 +7,11 @@ import com.alipay.api.internal.mapping.ApiField;
  * 钱包中地铁票购票，获得核销码，线下地铁自助购票机上凭核销码取票，票号上传接口
  *
  * @author auto create
- * @since 1.0, 2015-12-15 11:19:48
+ * @since 1.0, 2016-04-28 14:25:37
  */
 public class AlipayCommerceCityfacilitatorScardcenterTicketUploadModel extends AlipayObject {
 
-	private static final long serialVersionUID = 6368829669348631718L;
+	private static final long serialVersionUID = 6176922756758677989L;
 
 	/**
 	 * 渠道商提供的其它信息

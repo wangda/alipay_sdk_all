@@ -10,11 +10,11 @@ import com.alipay.api.AlipayResponse;
  * ALIPAY API: alipay.offline.material.image.download response.
  * 
  * @author auto create
- * @since 1.0, 2015-12-31 16:09:07
+ * @since 1.0, 2016-06-30 13:30:25
  */
 public class AlipayOfflineMaterialImageDownloadResponse extends AlipayResponse {
 
-	private static final long serialVersionUID = 6727166571799176636L;
+	private static final long serialVersionUID = 5764136914774452653L;
 
 	/** 
 	 * 图片地址列表，按入参id顺序返回，如果某个id转化失败，则用空字符占位
