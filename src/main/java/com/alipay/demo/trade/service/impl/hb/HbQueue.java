@@ -21,7 +21,7 @@ public class HbQueue {
 
     public synchronized static void offer(SysTradeInfo info) {
         // blockingQueue不需要考虑队列满的情况，生产者会被阻塞直到队列被消耗
-        if (info != null) {
+ /*       if (info != null) {
             try {
                 // 使用阻塞put
                 queue.put(info);
@@ -29,7 +29,7 @@ public class HbQueue {
                 log.warn("interrupted for tradeInfo:" + info);
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     public synchronized static List<SysTradeInfo> poll() {
