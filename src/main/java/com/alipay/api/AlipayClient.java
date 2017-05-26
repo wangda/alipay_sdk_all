@@ -4,12 +4,15 @@
  */
 package com.alipay.api;
 
+import com.alipay.demo.trade.service.sign.PaySigner;
+
 /**
  * 
  * @author runzhi
  */
 public interface AlipayClient {
 
+    
     /**
      * 
      * 

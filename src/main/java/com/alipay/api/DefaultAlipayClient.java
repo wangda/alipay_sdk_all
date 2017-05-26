@@ -23,6 +23,7 @@ import com.alipay.api.internal.util.AlipayUtils;
 import com.alipay.api.internal.util.RequestParametersHolder;
 import com.alipay.api.internal.util.StringUtils;
 import com.alipay.api.internal.util.WebUtils;
+import com.alipay.demo.trade.service.sign.PaySigner;
 
 /**
  * 
@@ -48,6 +49,9 @@ public class DefaultAlipayClient implements AlipayClient {
 
     private int    connectTimeout = 5000;
     private int    readTimeout    = 15000;
+    
+    /** 签名器 */
+    private PaySigner signer = null;
 
     static {
         //清除安全设置
@@ -229,8 +233,12 @@ public class DefaultAlipayClient implements AlipayClient {
         if (!StringUtils.isEmpty(this.sign_type)) {
 
             String signContent = AlipaySignature.getSignatureContent(requestHolder);
-            protocalMustParams.put(AlipayConstants.SIGN,
-                AlipaySignature.rsaSign(signContent, privateKey, charset, this.sign_type));
+            if (signer == null) {
+                protocalMustParams.put(AlipayConstants.SIGN,
+                    AlipaySignature.rsaSign(signContent, privateKey, charset, this.sign_type));
+            } else {
+                protocalMustParams.put(AlipayConstants.SIGN, signer.sign(signContent));
+            }
 
         } else {
             protocalMustParams.put(AlipayConstants.SIGN, "");
@@ -464,6 +472,10 @@ public class DefaultAlipayClient implements AlipayClient {
 
         return new ResponseEncryptItem(responseBody, realBody);
 
+    }
+
+    public void setSigner(PaySigner signer) {
+        this.signer = signer;
     }
 
 }

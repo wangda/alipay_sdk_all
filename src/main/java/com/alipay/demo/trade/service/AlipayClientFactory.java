@@ -13,6 +13,8 @@ import com.alipay.api.AlipayConstants;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.demo.trade.config.Configs;
 import com.alipay.demo.trade.model.F2FPayAccount;
+import com.alipay.demo.trade.service.sign.PaySigner;
+import com.alipay.demo.trade.service.sign.SignerRegistry;
 
 /**
  * 支付宝支付连接客户端工厂类
@@ -53,7 +55,10 @@ public class AlipayClientFactory {
     }
     
     private static AlipayClient newAlipayClient(F2FPayAccount account) {
-        return new DefaultAlipayClient(Configs.getOpenApiDomain(), account.getAppid(), account.getPrivateKey(),
+        PaySigner signer = SignerRegistry.getSigner(account.getKey());
+        DefaultAlipayClient alipayClient = new DefaultAlipayClient(Configs.getOpenApiDomain(), account.getAppid(), account.getPrivateKey(),
                 AlipayConstants.FORMAT_JSON, AlipayConstants.CHARSET_UTF8, account.getAlipayPublicKey());
+        alipayClient.setSigner(signer);
+        return alipayClient;
     }
 }
